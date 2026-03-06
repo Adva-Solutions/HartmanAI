@@ -102,7 +102,7 @@
     <p class="hero-desc">Prompts, workflows, and tools from our workshops. Everything you need to start using AI across fundraising, marketing, research, and daily operations.</p>
     <div class="hero-branding">
       <div class="hero-adva-mark"><div class="r1"></div><div class="r2"></div><div class="r3"></div><div class="r4"></div></div>
-      <div class="hero-adva-text">Brought to you by<br><a href="https://advasolutions.io" target="_blank">Adva Solutions</a></div>
+      <div class="hero-adva-text">Brought to you by<br><a href="https://adva-solutions.com" target="_blank">Adva Solutions</a></div>
     </div>
   </div>
 </div>
@@ -551,7 +551,7 @@ Make it interactive so I can click on a platform to filter the table below it.</
       <div style="position:absolute;inset:4px;border-radius:50%;border:1px solid rgba(255,255,255,.15);"></div>
       <div style="position:absolute;inset:8px;border-radius:50%;background:rgba(255,255,255,.2);"></div>
     </div>
-    <span>Prepared by <a href="https://advasolutions.io" target="_blank">Adva Solutions</a></span>
+    <span>Prepared by <a href="https://adva-solutions.com" target="_blank">Adva Solutions</a></span>
   </div>
 </div>
 
@@ -661,7 +661,8 @@ Make it interactive so I can click on a platform to filter the table below it.</
     });
     var totalSections = sections.length || 1;
     var totalChecks = checks.length || 1;
-    var pct = Math.round(((viewedSections/totalSections)*0.6 + (checkedCount/totalChecks)*0.4)*100);
+    var pct = Math.round((viewedSections/totalSections)*100);
+    if(pct > 100) pct = 100;
     
     var fill = activeSession.querySelector('.progress-fill');
     var pctEl = activeSession.querySelector('.pct');
