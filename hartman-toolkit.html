@@ -164,8 +164,8 @@
   <div class="section-title">How to Talk to AI</div>
   <div class="section-subtitle">The single most important skill you'll develop.</div>
   <div class="callout">
-    <div class="callout-title">Think of AI as a brilliant intern.</div>
-    <p>Incredibly capable, but needs clear direction. Vague instructions produce vague results. Be specific about what you want, who you are, and what the output should look like. If you can write, you can do everything in this toolkit!</p>
+    <div class="callout-title">Think of AI as a brilliant intern with ADHD.</div>
+    <p>Incredibly capable, but needs clear direction. Vague instructions produce vague results. Be specific about what you want, who you are, and what the output should look like. If you can write in English, you can do everything in this toolkit.</p>
   </div>
   <div class="card-grid">
     <div class="card"><div class="card-head"><div class="icon icon-accent"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div><div class="card-title">Be Specific</div></div><div class="card-desc">Don't say "help me with fundraising." Say "draft a grant proposal cover letter to the Covenant Foundation for our new curriculum initiative, emphasizing our 40-year track record in pluralistic Jewish thought."</div></div>
@@ -314,8 +314,10 @@ Maintain the scholarly but accessible tone that Hartman is known for.</div><butt
   <div class="nav-inner">
     <div class="nav-tab active" data-section="s2-what">What's an Agent?</div>
     <div class="nav-tab" data-section="s2-setup">Setup Walkthrough</div>
-    <div class="nav-tab" data-section="s2-email">Build: Email Agent</div>
-    <div class="nav-tab" data-section="s2-content">Build: Content Agent</div>
+    <div class="nav-tab" data-section="s2-email">Email Agent</div>
+    <div class="nav-tab" data-section="s2-content">Content Agent</div>
+    <div class="nav-tab" data-section="s2-excel">Excel Agent</div>
+    <div class="nav-tab" data-section="s2-vibe">Vibe Coding</div>
     <div class="nav-tab" data-section="s2-tips">Tips &amp; Next Steps</div>
   </div>
 </div>
@@ -424,9 +426,95 @@ Rules:
   </div>
 </div>
 
+<!-- EXCEL AGENT MODE -->
+<div class="section" id="s2-excel">
+  <div class="section-label"><span>05</span></div>
+  <div class="section-title">Excel Agent Mode</div>
+  <div class="section-subtitle">Turn spreadsheets into dashboards, formulas, and analysis using plain English.</div>
+
+  <div class="callout">
+    <div class="callout-title">This changes everything about working with data.</div>
+    <p>Excel Agent Mode isn't just answering questions about your data. It takes actions: creates formulas, builds charts, adds new tabs, formats dashboards. You describe what you want and it builds it.</p>
+  </div>
+
+  <div class="setup-box">
+    <div class="setup-head"><div class="icon icon-accent"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="3" x2="9" y2="21"/></svg></div><h4>How to Access Agent Mode</h4></div>
+    <p>Agent Mode requires your data to be on OneDrive. Upload your spreadsheet first, then open it in Excel.</p>
+    <div class="checklist">
+      <div class="check-item"><div class="check-box">&#10003;</div><span>Upload your spreadsheet to <strong>OneDrive</strong> (Agent Mode won't work on local files)</span></div>
+      <div class="check-item"><div class="check-box">&#10003;</div><span>Open the file in Excel and click the <strong>Copilot</strong> button in the ribbon</span></div>
+      <div class="check-item"><div class="check-box">&#10003;</div><span>Click <strong>Tools</strong>, then select <strong>Agent Mode</strong></span></div>
+      <div class="check-item"><div class="check-box">&#10003;</div><span>Now you can give instructions in plain English and the agent will take actions on your data</span></div>
+    </div>
+  </div>
+
+  <div class="wf-card">
+    <div class="wf-header"><div class="wf-left"><div class="wf-num"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="3" x2="9" y2="21"/></svg></div><div><div class="wf-title">Podcast Data Analysis</div><div class="wf-desc">Dashboards, trends, and listener analytics from your show data</div></div></div><div class="wf-arrow">&#9662;</div></div>
+    <div class="wf-body"><div class="wf-content">
+      <p>Upload your podcast analytics spreadsheet and let Agent Mode do the heavy lifting. It can build VLOOKUPs across episodes and platforms, create trend charts, and generate a full dashboard tab automatically.</p>
+      <div class="prompt-block"><div class="prompt-label">Sample Prompt (Excel Agent Mode)</div><div class="prompt-text">Analyze this podcast data. Create a new dashboard tab that includes:
+- Total listens by episode with a trend chart
+- Top performing episodes ranked by downloads
+- Platform breakdown (Apple, Spotify, YouTube) with percentage share
+- Listener retention: average completion rate by episode length
+- Geographic breakdown of our audience by region
+Format everything professionally with headers and conditional formatting.</div><button class="copy-btn">Copy</button></div>
+      <div class="prompt-block"><div class="prompt-label">Another Example</div><div class="prompt-text">Add a VLOOKUP column that matches each episode to its social media engagement data from the second sheet. Then create a pivot summary showing average listens by topic category, sorted highest to lowest.</div><button class="copy-btn">Copy</button></div>
+      <div class="wf-note"><strong>Key requirement:</strong> Your file must be saved on OneDrive for Agent Mode to work. If it's a local file, upload it first. Agent Mode can create new tabs, add formulas, build charts, and format data, all from natural language instructions. We demoed this with a synthetic "For Heaven's Sake" podcast dataset and it built the entire dashboard in seconds.</div>
+    </div></div>
+  </div>
+</div>
+
+<!-- VIBE CODING WITH GEMINI -->
+<div class="section" id="s2-vibe">
+  <div class="section-label"><span>06</span></div>
+  <div class="section-title">Vibe Coding with Gemini Canvas</div>
+  <div class="section-subtitle">Turn raw data into beautiful interactive dashboards without writing a line of code.</div>
+
+  <div class="callout">
+    <div class="callout-title">You don't need a developer to build tools anymore.</div>
+    <p>Vibe coding means describing what you want in natural language and letting AI generate the code. With Gemini Canvas, you upload a CSV and get a fully interactive visual dashboard you can share, export to slides, or keep using as a live tool.</p>
+  </div>
+
+  <div class="setup-box">
+    <div class="setup-head"><div class="icon icon-accent"><svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div><h4>How to Use Gemini Canvas</h4></div>
+    <p>Gemini Canvas is Google's tool for creating interactive visual outputs from your prompts. Free to use at <a href="https://gemini.google.com" target="_blank" style="color:var(--accent);">gemini.google.com</a>.</p>
+    <div class="checklist">
+      <div class="check-item"><div class="check-box">&#10003;</div><span>Go to <a href="https://gemini.google.com" target="_blank" style="color:var(--accent);"><strong>gemini.google.com</strong></a> and sign in with any Google account</span></div>
+      <div class="check-item"><div class="check-box">&#10003;</div><span>Upload a CSV file or paste data into the chat</span></div>
+      <div class="check-item"><div class="check-box">&#10003;</div><span>Ask Gemini to <strong>"create an interactive dashboard"</strong> from the data</span></div>
+      <div class="check-item"><div class="check-box">&#10003;</div><span>Gemini opens a <strong>Canvas</strong> panel with a live, interactive visualization you can modify</span></div>
+    </div>
+  </div>
+
+  <div class="wf-card">
+    <div class="wf-header"><div class="wf-left"><div class="wf-num"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div><div><div class="wf-title">CSV to Interactive Dashboard</div><div class="wf-desc">Upload data, get a visual tool you can share or export</div></div></div><div class="wf-arrow">&#9662;</div></div>
+    <div class="wf-body"><div class="wf-content">
+      <p>This is what we demonstrated live in the workshop. Upload any CSV (podcast analytics, program metrics, survey responses) and Gemini builds an interactive UI with charts, filters, and summaries.</p>
+      <div class="prompt-block"><div class="prompt-label">Sample Prompt</div><div class="prompt-text">I'm uploading a CSV of our podcast analytics for "For Heaven's Sake." Create a beautiful interactive dashboard with:
+- A summary card row showing total episodes, total listens, and average retention rate
+- A bar chart of listens by platform (Apple, Spotify, YouTube, Web)
+- A line chart showing episode-over-episode download trends
+- A filterable table of all episodes sorted by total listens
+- Use a clean, professional design with a navy and gold color scheme
+
+Make it interactive so I can click on a platform to filter the table below it.</div><button class="copy-btn">Copy</button></div>
+      <div class="prompt-block"><div class="prompt-label">Reuse Your Design</div><div class="prompt-text">Use the exact same design language and layout from the last dashboard you built, but apply it to this new dataset. Keep the same color scheme, card style, and chart formats.</div><button class="copy-btn">Copy</button></div>
+      <div class="wf-note"><strong>Key advantage:</strong> Once you define a design language you like, you can reuse it across new datasets. Just reference the previous dashboard and upload new data. You can also export the result to Google Slides or share the interactive version directly with your team.</div>
+    </div></div>
+  </div>
+
+  <div class="card-grid" style="margin-top:24px;">
+    <div class="card"><div class="card-head"><div class="icon icon-accent"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div><div class="card-title">Interactive Dashboards</div></div><div class="card-desc">Upload a CSV and get a clickable, filterable dashboard in seconds. No developer needed. Iterate on the design by describing what to change.</div></div>
+    <div class="card"><div class="card-head"><div class="icon icon-accent"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><div class="card-title">Export to Slides</div></div><div class="card-desc">Take your dashboard and export it directly into a presentation. Perfect for board meetings, donor reports, or program reviews.</div></div>
+    <div class="card"><div class="card-head"><div class="icon icon-accent"><svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg></div><div class="card-title">Reusable Templates</div></div><div class="card-desc">Define your design language once. Apply the same look and feel to every new dataset. Consistent branding without starting over each time.</div></div>
+    <div class="card"><div class="card-head"><div class="icon icon-accent"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg></div><div class="card-title">No Code Required</div></div><div class="card-desc">This is vibe coding: you describe what you want, AI generates the code. You don't need to learn programming. If something looks wrong, just tell it what to fix.</div></div>
+  </div>
+</div>
+
 <!-- TIPS & NEXT STEPS -->
 <div class="section" id="s2-tips">
-  <div class="section-label"><span>05</span></div>
+  <div class="section-label"><span>07</span></div>
   <div class="section-title">Tips &amp; Next Steps</div>
   <div class="section-subtitle">Best practices for getting the most out of your agents.</div>
 
