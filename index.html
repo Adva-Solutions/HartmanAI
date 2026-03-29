@@ -54,7 +54,7 @@
 .callout{border-left:3px solid var(--accent);padding:24px 28px;margin-bottom:28px;background:var(--accent-light);border-radius:0 8px 8px 0}.callout-title{font-family:var(--font-display);font-size:24px;font-style:italic;color:var(--text);margin-bottom:10px}.callout p{font-size:16px;color:var(--text-secondary);line-height:1.75}
 
 /* CARDS */
-.card-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.card{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:22px 24px;transition:border-color .15s}.card:hover{border-color:var(--accent)}.card[title]:hover{box-shadow:0 2px 12px rgba(197,151,62,.15);transform:translateY(-2px);transition:all .2s ease}.card-title{font-size:16px;font-weight:600;color:var(--text);margin-bottom:6px}.card-desc{font-size:15px;color:var(--text-secondary);line-height:1.6}
+.card-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.card{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:22px 24px;transition:border-color .15s}.card:hover{border-color:var(--accent)}.card-title{font-size:16px;font-weight:600;color:var(--text);margin-bottom:6px}.card-desc{font-size:15px;color:var(--text-secondary);line-height:1.6}
 .card-head{display:flex;align-items:center;gap:12px;margin-bottom:8px}
 
 /* ICONS */
@@ -135,17 +135,77 @@
 #passwordGate.gate-exit{opacity:0;transition:opacity .4s ease}
 
 /* TABLET BREAKPOINT */
-@media(max-width:960px){.hero{padding:52px 36px}.hero h1{font-size:42px}.container,.progress-wrap{padding:0 32px}.app-grid{grid-template-columns:1fr 1fr}.session-tab{padding:14px 20px;font-size:13px}}
+@media(max-width:960px){.hero{padding:52px 36px}.hero h1{font-size:42px}.container,.progress-wrap{padding:0 32px}.app-grid{grid-template-columns:1fr 1fr}.session-tab{padding:14px 20px;font-size:13px}.callout-banner{margin-left:-32px;margin-right:-32px;padding-left:32px;padding-right:32px}.container>.section:nth-child(even){margin-left:-32px;margin-right:-32px;padding-left:32px;padding-right:32px}}
 
 /* RESPONSIVE */
-@media(max-width:700px){.hero{padding:48px 24px}.hero h1{font-size:36px}.container,.progress-wrap{padding:0 24px}.card-grid,.tool-grid{grid-template-columns:1fr}.app-grid{grid-template-columns:1fr}.sticky-nav,.session-tabs{padding:0 16px}.equation-row{gap:6px}}
+@media(max-width:700px){.hero{padding:48px 24px}.hero h1{font-size:36px}.container,.progress-wrap{padding:0 24px}.card-grid,.tool-grid{grid-template-columns:1fr}.app-grid{grid-template-columns:1fr}.sticky-nav,.session-tabs{padding:0 16px}.equation-row{gap:6px}.callout-banner{margin-left:-24px;margin-right:-24px;padding-left:24px;padding-right:24px}.container>.section:nth-child(even){margin-left:-24px;margin-right:-24px;padding-left:24px;padding-right:24px}}
 
 /* MEDIA */
 .media-block{margin:24px 0}.media-block video,.media-block iframe{display:block}
 @media(max-width:700px){.media-block iframe[src$=".pdf"]{height:400px}}
 
+/* EXAMPLE LABEL (Excel Agent section) */
+.example-label{font-size:13px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--session-accent,var(--accent));margin:4px 0 16px;padding-bottom:8px;border-bottom:1px dashed var(--border-light)}
+
+/* TOC SIDEBAR */
+.toc-sidebar{position:fixed;left:0;top:0;width:220px;height:100vh;background:var(--bg);border-right:1px solid var(--border-light);padding:200px 0 40px;overflow-y:auto;z-index:90;display:none;scrollbar-width:thin}
+.toc-sidebar ul{list-style:none;padding:0;margin:0}
+.toc-sidebar li{font-size:13px;padding:10px 20px 10px 20px;color:var(--text-light);cursor:pointer;border-left:3px solid transparent;transition:all .2s;line-height:1.4}
+.toc-sidebar li:hover{color:var(--text);background:var(--bg-warm)}
+.toc-sidebar li.active{border-left-color:var(--session-accent,var(--accent));color:var(--text);font-weight:600;background:var(--accent-light)}
+.toc-sidebar .toc-num{display:inline-block;width:24px;font-size:11px;font-weight:600;color:var(--session-accent,var(--accent));opacity:.7}
+body.has-toc .hero,body.has-toc .session-tabs,body.has-toc .sticky-nav,body.has-toc .container,body.has-toc .progress-wrap,body.has-toc .footer{margin-left:220px}
+body.has-toc .toc-sidebar{display:block}
+
+/* TOC MOBILE FAB + DRAWER */
+.toc-fab{position:fixed;bottom:24px;left:24px;z-index:98;border-radius:20px;padding:10px 18px;background:var(--accent-dark);color:rgba(255,255,255,.9);font-size:13px;font-family:var(--font-body);font-weight:500;border:1px solid rgba(255,255,255,.1);cursor:pointer;box-shadow:0 2px 12px rgba(0,0,0,.2);display:none;transition:all .2s}
+.toc-fab:hover{background:var(--accent);color:white}
+.toc-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:199;opacity:0;pointer-events:none;transition:opacity .3s}
+.toc-backdrop.open{opacity:1;pointer-events:auto}
+.toc-drawer{position:fixed;bottom:0;left:0;right:0;max-height:70vh;background:var(--white);border-radius:16px 16px 0 0;z-index:200;transform:translateY(100%);transition:transform .3s ease;overflow-y:auto;padding:24px 0 40px}
+.toc-drawer.open{transform:translateY(0)}
+.toc-drawer .toc-drawer-handle{width:40px;height:4px;background:var(--border);border-radius:2px;margin:0 auto 20px}
+.toc-drawer ul{list-style:none;padding:0;margin:0}
+.toc-drawer li{font-size:15px;padding:14px 28px;color:var(--text-secondary);cursor:pointer;border-left:3px solid transparent;transition:all .15s}
+.toc-drawer li:hover{background:var(--bg-warm)}
+.toc-drawer li.active{border-left-color:var(--session-accent,var(--accent));color:var(--text);font-weight:600;background:var(--accent-light)}
+.toc-drawer .toc-num{display:inline-block;width:28px;font-size:12px;font-weight:600;color:var(--session-accent,var(--accent))}
+@media(min-width:961px){.toc-fab{display:none!important}}
+@media(max-width:960px){.toc-fab{display:block}}
+
+/* CALLOUT BANNER */
+.callout-banner{background:var(--accent-dark);color:white;margin:0 -48px 28px;padding:32px 48px;border-left:4px solid var(--accent);border-radius:0}
+.callout-banner .callout-title{color:var(--accent);font-style:normal;font-weight:600}
+.callout-banner p{color:rgba(255,255,255,.7)}
+
+/* ALTERNATING SECTION BACKGROUNDS */
+.container>.section:nth-child(even){background:var(--bg-warm);margin-left:-48px;margin-right:-48px;padding-left:48px;padding-right:48px;border-radius:0}
+
+/* GRADIENT SECTION DIVIDERS */
+.section+.section{border-top:none;position:relative}
+.section+.section::before{content:'';display:block;height:1px;background:linear-gradient(90deg,transparent,var(--border),var(--session-accent,var(--accent)),var(--border),transparent);margin-bottom:0}
+
+/* ACCORDION GROUP */
+.accordion-group{background:var(--bg-muted);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:8px;margin-top:12px}
+.accordion-group .collapsible{background:var(--white)}
+
+/* ENHANCED HOVER EFFECTS */
+.card,.step-card,.app-card,.tool-card{transition:border-color .2s,box-shadow .2s,transform .2s}
+.card:hover,.step-card:hover,.app-card:hover,.tool-card:hover{border-color:var(--session-accent,var(--accent));box-shadow:0 4px 16px rgba(0,0,0,.06);transform:translateY(-3px)}
+
+/* COLLAPSIBLE OPEN-STATE INDICATOR */
+.collapsible.open .collapsible-header{border-left:3px solid var(--session-accent,var(--accent));padding-left:21px}
+
+/* PROGRESS BAR ENHANCED */
+.progress-track{height:8px;border-radius:4px;position:relative}
+.progress-fill{border-radius:4px}
+.progress-section-label{font-size:12px;color:var(--text-light);margin-top:4px}
+
+/* READING TIME BADGES */
+.reading-time{display:inline-block;font-size:12px;color:var(--text-light);background:var(--bg-muted);padding:2px 10px;border-radius:10px;margin-left:12px;font-weight:500}
+
 /* PRINT */
-@media print{#passwordGate,.scroll-top,.sticky-nav,.session-tabs,.progress-wrap,.copy-btn{display:none!important}.session-content{display:block!important;opacity:1!important;transform:none!important}.collapsible-body,.wf-body{max-height:none!important;overflow:visible!important}.section{opacity:1!important;transform:none!important}body{background:#fff}a[href]::after{content:" (" attr(href) ")";font-size:12px;color:#666}}
+@media print{#passwordGate,.scroll-top,.sticky-nav,.session-tabs,.progress-wrap,.copy-btn,.toc-sidebar,.toc-fab,.toc-drawer,.toc-backdrop{display:none!important}.session-content{display:block!important;opacity:1!important;transform:none!important}.collapsible-body,.wf-body{max-height:none!important;overflow:visible!important}.section{opacity:1!important;transform:none!important}body{background:#fff;margin-left:0!important}a[href]::after{content:" (" attr(href) ")";font-size:12px;color:#666}.callout-banner{background:#f5f5f5!important;color:#333!important}.callout-banner .callout-title{color:#333!important}.callout-banner p{color:#666!important}.container>.section:nth-child(even){margin-left:0;margin-right:0;padding-left:0;padding-right:0}}
 </style>
 </head>
 <body>
@@ -216,6 +276,8 @@ if(sessionStorage.getItem('hartmanAuth')==='1'){
   </div>
 </div>
 
+<!-- TOC SIDEBAR (desktop) -->
+<nav class="toc-sidebar" id="tocSidebar"><ul id="tocList"></ul></nav>
 
 <!-- ============================================================ -->
 <!-- SESSION 1: AI FOUNDATIONS -->
@@ -232,7 +294,7 @@ if(sessionStorage.getItem('hartmanAuth')==='1'){
     <div class="nav-tab" data-section="s1-tools">Tools</div>
   </div>
 </div>
-<div class="progress-wrap"><div class="progress-row"><span>Your progress</span><span class="pct" id="progressPct1">0%</span></div><div class="progress-track"><div class="progress-fill" id="progressFill1"></div></div></div>
+<div class="progress-wrap"><div class="progress-row"><span class="progress-section-label">Your progress</span><span class="pct" id="progressPct1">0%</span></div><div class="progress-track"><div class="progress-fill" id="progressFill1"></div></div></div>
 
 <div class="container">
 
@@ -240,7 +302,7 @@ if(sessionStorage.getItem('hartmanAuth')==='1'){
 <div class="section" id="s1-basics">
   <div class="section-label"><span>01</span></div>
   <div class="section-title">How AI Actually Works</div>
-  <div class="section-subtitle">The mental model you need, nothing more.</div>
+  <div class="section-subtitle">The mental model you need, nothing more. <span class="reading-time">~2 min</span></div>
   <div class="collapsible open">
     <div class="collapsible-header"><h3>The formula behind "intelligent" AI</h3><div class="collapsible-arrow">&#9662;</div></div>
     <div class="collapsible-body"><div class="collapsible-content">
@@ -260,8 +322,8 @@ if(sessionStorage.getItem('hartmanAuth')==='1'){
 <div class="section" id="s1-prompting">
   <div class="section-label"><span>02</span></div>
   <div class="section-title">How to Talk to AI</div>
-  <div class="section-subtitle">The single most important skill you'll develop.</div>
-  <div class="callout">
+  <div class="section-subtitle">The single most important skill you'll develop. <span class="reading-time">~3 min</span></div>
+  <div class="callout callout-banner">
     <div class="callout-title">Think of AI as a brilliant intern.</div>
     <p>Incredibly capable, but needs clear direction. Vague instructions produce vague results. Be specific about what you want, who you are, and what the output should look like. If you can write in English, you can do everything in this toolkit.</p>
   </div>
@@ -416,13 +478,13 @@ Maintain the scholarly but accessible tone that Hartman is known for.</div><butt
   <div class="nav-inner">
     <div class="nav-tab active" data-section="s2-what">What's an Agent?</div>
     <div class="nav-tab" data-section="s2-setup">Setup Walkthrough</div>
-    <div class="nav-tab" data-section="s2-data">Donor Research</div>
+    <div class="nav-tab" data-section="s2-data">Excel Agent</div>
     <div class="nav-tab" data-section="s2-email">Write Like Me</div>
     <div class="nav-tab" data-section="s2-report">Report Writer</div>
     <div class="nav-tab" data-section="s2-tips">Tips &amp; Next Steps</div>
   </div>
 </div>
-<div class="progress-wrap"><div class="progress-row"><span>Your progress</span><span class="pct" id="progressPct2">0%</span></div><div class="progress-track"><div class="progress-fill" id="progressFill2"></div></div></div>
+<div class="progress-wrap"><div class="progress-row"><span class="progress-section-label">Your progress</span><span class="pct" id="progressPct2">0%</span></div><div class="progress-track"><div class="progress-fill" id="progressFill2"></div></div></div>
 
 <div class="container">
 
@@ -430,8 +492,9 @@ Maintain the scholarly but accessible tone that Hartman is known for.</div><butt
 <div class="section" id="s2-what">
   <div class="section-label"><span>01</span></div>
   <div class="section-title">What's an Agent?</div>
-  <div class="section-subtitle">The shift from chatting with AI to delegating work to AI.</div>
+  <div class="section-subtitle">The shift from chatting with AI to delegating work to AI. <span class="reading-time">~4 min</span></div>
 
+  <div class="accordion-group">
   <div class="collapsible open">
     <div class="collapsible-header"><h3>Chat vs. Agent</h3><div class="collapsible-arrow">&#9662;</div></div>
     <div class="collapsible-body"><div class="collapsible-content">
@@ -464,8 +527,9 @@ Maintain the scholarly but accessible tone that Hartman is known for.</div><butt
       </div>
     </div></div>
   </div>
+  </div><!-- end accordion-group -->
 
-  <div class="callout" style="margin-top:24px;">
+  <div class="callout callout-banner" style="margin-top:24px;">
     <div class="callout-title">The future of work is co-working with agents.</div>
     <p>Understanding how agents work &mdash; and how to build them &mdash; is quickly becoming an essential skill. The productivity gains from having specialized AI agents handle repetitive tasks are too significant to ignore. That's exactly why we're learning to build them: so Hartman can lead, not follow.</p>
   </div>
@@ -488,19 +552,27 @@ Maintain the scholarly but accessible tone that Hartman is known for.</div><butt
   <div class="step-card"><div class="step-num">7</div><h4>Test and Share</h4><p>Use the test panel to try your agent. Compare output to regular Copilot. Adjust the system prompt until output is consistently good. Once working, share with your team via the agent library.</p></div>
 </div>
 
-<!-- DONOR RESEARCH WITH EXCEL AGENT -->
+<!-- THE EXCEL AGENT -->
 <div class="section" id="s2-data">
   <div class="section-label"><span>03</span></div>
-  <div class="section-title">Donor Research with the Excel Agent</div>
-  <div class="section-subtitle">Use AI to turn a raw event list into a ranked, researched prospect list.</div>
+  <div class="section-title">The Excel Agent</div>
+  <div class="section-subtitle">A prebuilt agent inside Excel. Because Microsoft owns LinkedIn, it can access data no other AI system can. <span class="reading-time">~5 min</span></div>
 
-  <div class="callout">
-    <div class="callout-title">This changes the research workflow entirely.</div>
-    <p>The Excel Agent is a prebuilt Microsoft agent embedded in Excel. Because Microsoft owns LinkedIn, the Copilot Excel agent can synthesize LinkedIn data &mdash; which is blocked to all other AI systems. Combined with web search, it turns a raw event list into a researched, ranked prospect list in minutes instead of days.</p>
+  <div style="margin-bottom:28px;">
+    <h3 style="font-size:16px;font-weight:600;margin-bottom:14px;color:var(--text);">What it can do</h3>
+    <div class="card-grid">
+      <div class="card"><div class="card-head"><div class="icon icon-accent"><svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></div><div class="card-title">LinkedIn + Web Search</div></div><div class="card-desc">Cross-reference names with LinkedIn profiles and public web data. No other AI tool has this access.</div></div>
+      <div class="card"><div class="card-head"><div class="icon icon-accent"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="3" x2="9" y2="21"/></svg></div><div class="card-title">Formulas &amp; Lookups</div></div><div class="card-desc">Write VLOOKUP, cross-reference sheets, and build calculated columns &mdash; all from plain English.</div></div>
+      <div class="card"><div class="card-head"><div class="icon icon-accent"><svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div><div class="card-title">Charts &amp; Dashboards</div></div><div class="card-desc">Create visualizations, pivot tables, and formatted dashboards on new tabs automatically.</div></div>
+      <div class="card"><div class="card-head"><div class="icon icon-accent"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><div class="card-title">Report Generation</div></div><div class="card-desc">Summarize financial data, flag anomalies, and generate narrative reports from raw numbers.</div></div>
+    </div>
   </div>
-  <div class="collapsible open" style="margin-top:8px;">
-    <div class="collapsible-header"><h3>Qualitative Research: Donor Enrichment</h3><div class="collapsible-arrow">&#9662;</div></div>
+
+  <div class="accordion-group">
+  <div class="collapsible open" style="margin-top:0;">
+    <div class="collapsible-header"><h3>Qualitative Research</h3><div class="collapsible-arrow">&#9662;</div></div>
     <div class="collapsible-body"><div class="collapsible-content">
+      <div class="example-label">Example: Donor Enrichment</div>
       <p class="eq-note" style="margin-bottom:20px;">Take an event registrant list and identify who has donor capacity and philanthropic propensity. The Excel agent cross-references each name with public web data and LinkedIn profiles to produce a ranked, enriched prospect list.</p>
 
       <div class="step-card">
@@ -536,8 +608,9 @@ Do not specify exact dollar amounts if you don't have verified data. Use ranges 
   </div>
 
   <div class="collapsible" style="margin-top:12px;">
-    <div class="collapsible-header"><h3>Quantitative Research: Financial Report Analysis</h3><div class="collapsible-arrow">&#9662;</div></div>
+    <div class="collapsible-header"><h3>Quantitative Research</h3><div class="collapsible-arrow">&#9662;</div></div>
     <div class="collapsible-body"><div class="collapsible-content">
+      <div class="example-label">Example: Financial Report Analysis</div>
       <p class="eq-note" style="margin-bottom:20px;">Use the Excel Agent to analyze financial data, generate reports, build dashboards, and create visualizations &mdash; all using natural language. No need to know Excel functions or formulas.</p>
 
       <div class="setup-box" style="margin-bottom:20px;">
@@ -557,13 +630,14 @@ Do not specify exact dollar amounts if you don't have verified data. Use ranges 
       <div class="wf-note" style="margin-top:16px;"><strong>Key requirement:</strong> Your file must be saved on OneDrive for Agent Mode to work. If it's a local file, upload it first. The agent handles formulas, lookups, charts, and formatting &mdash; you just describe the outcome you need.</div>
     </div></div>
   </div>
+  </div><!-- end accordion-group -->
 </div>
 
 <!-- BUILD: WRITE LIKE ME AGENT -->
 <div class="section" id="s2-email">
   <div class="section-label"><span>04</span></div>
   <div class="section-title">Build: Write Like Me Agent</div>
-  <div class="section-subtitle">An agent that writes emails in your exact voice &mdash; not generic AI output.</div>
+  <div class="section-subtitle">An agent that writes emails in your exact voice &mdash; not generic AI output. <span class="reading-time">~4 min</span></div>
 
   <div class="callout">
     <div class="callout-title">Step 0: Benchmark first.</div>
@@ -705,7 +779,7 @@ Do not specify exact dollar amounts if you don't have verified data. Use ranges 
     <div class="nav-tab" data-section="s3-browsers">AI Browsers</div>
   </div>
 </div>
-<div class="progress-wrap"><div class="progress-row"><span>Your progress</span><span class="pct">0%</span></div><div class="progress-track"><div class="progress-fill"></div></div></div>
+<div class="progress-wrap"><div class="progress-row"><span class="progress-section-label">Your progress</span><span class="pct">0%</span></div><div class="progress-track"><div class="progress-fill"></div></div></div>
 
 <div class="container">
 
@@ -713,9 +787,9 @@ Do not specify exact dollar amounts if you don't have verified data. Use ranges 
 <div class="section" id="s3-geo">
   <div class="section-label"><span>01</span></div>
   <div class="section-title">GEO for Fundraising</div>
-  <div class="section-subtitle">Generative Engine Optimization: make sure AI talks about you.</div>
+  <div class="section-subtitle">Generative Engine Optimization: make sure AI talks about you. <span class="reading-time">~5 min</span></div>
 
-  <div class="callout">
+  <div class="callout callout-banner">
     <div class="callout-title">"When a donor asks ChatGPT about Jewish pluralism, are you in the answer?"</div>
     <p>GEO is the next stage after SEO. While SEO was about ranking on Google's page 1, GEO is about influencing what AI systems say about you when users ask. 60% of searches are now zero-click &mdash; the answer is consumed without ever visiting your site.</p>
   </div>
@@ -801,7 +875,7 @@ Do not specify exact dollar amounts if you don't have verified data. Use ranges 
 <div class="section" id="s3-vibe">
   <div class="section-label"><span>02</span></div>
   <div class="section-title">Vibe Coding</div>
-  <div class="section-subtitle">Build software and interactive tools using natural language &mdash; no coding required.</div>
+  <div class="section-subtitle">Build software and interactive tools using natural language &mdash; no coding required. <span class="reading-time">~4 min</span></div>
 
   <div class="callout">
     <div class="callout-title">"The peak of human technology is activated by natural language."</div>
@@ -900,6 +974,11 @@ Make it interactive so I can click on a category to filter the table below it.</
   </div>
 </div>
 
+<!-- TOC MOBILE -->
+<button class="toc-fab" id="tocFab"><span id="tocFabLabel">01 Sections</span></button>
+<div class="toc-backdrop" id="tocBackdrop"></div>
+<div class="toc-drawer" id="tocDrawer"><div class="toc-drawer-handle"></div><ul id="tocDrawerList"></ul></div>
+
 <button class="scroll-top" id="scrollTop" aria-label="Scroll to top">&#8593;</button>
 
 <script>
@@ -913,6 +992,7 @@ Make it interactive so I can click on a category to filter the table below it.</
       this.classList.add('active');
       document.querySelectorAll('.session-content').forEach(function(c){ c.classList.remove('active'); });
       document.getElementById(target).classList.add('active');
+      buildTOC(target);
       window.scrollTo({top: 0, behavior: 'smooth'});
     });
   });
@@ -986,6 +1066,7 @@ Make it interactive so I can click on a category to filter the table below it.</
         var sec = t.getAttribute('data-section');
         t.classList.toggle('active', sec === current);
       });
+      updateTOCActive(current);
     });
 
     updateProgress();
@@ -1010,6 +1091,8 @@ Make it interactive so I can click on a category to filter the table below it.</
     var pctEl = activeSession.querySelector('.pct');
     if(fill) fill.style.width = pct + '%';
     if(pctEl) pctEl.textContent = pct + '%';
+    var sectionLabel = activeSession.querySelector('.progress-section-label');
+    if(sectionLabel) sectionLabel.textContent = 'Section ' + viewedSections + ' of ' + totalSections;
   }
 
   window.addEventListener('scroll', onScroll, {passive:true});
@@ -1024,6 +1107,89 @@ Make it interactive so I can click on a category to filter the table below it.</
     });
   },{threshold:0.1});
   document.querySelectorAll('.section').forEach(function(s){ observer.observe(s); });
+
+  // TOC sidebar + mobile drawer
+  function buildTOC(sessionId) {
+    var session = document.getElementById(sessionId);
+    if (!session) return;
+    var sections = session.querySelectorAll('.section');
+    var tocList = document.getElementById('tocList');
+    var drawerList = document.getElementById('tocDrawerList');
+    var html = '';
+    sections.forEach(function(s) {
+      var label = s.querySelector('.section-label span');
+      var title = s.querySelector('.section-title');
+      if (label && title) {
+        var num = label.textContent.trim();
+        var name = title.textContent.trim();
+        if (name.length > 28) name = name.substring(0, 26) + '...';
+        html += '<li data-section="' + s.id + '"><span class="toc-num">' + num + '</span> ' + name + '</li>';
+      }
+    });
+    if (tocList) tocList.innerHTML = html;
+    if (drawerList) drawerList.innerHTML = html;
+    // Bind clicks
+    document.querySelectorAll('#tocList li, #tocDrawerList li').forEach(function(li) {
+      li.addEventListener('click', function() {
+        var sec = document.getElementById(this.getAttribute('data-section'));
+        if (sec) {
+          var nav = session.querySelector('.sticky-nav');
+          var navH = nav ? nav.offsetHeight : 50;
+          var top = sec.getBoundingClientRect().top + window.scrollY - navH - 16;
+          window.scrollTo({top: top, behavior: 'smooth'});
+        }
+        closeTocDrawer();
+      });
+    });
+  }
+
+  function updateTOCActive(current) {
+    document.querySelectorAll('#tocList li, #tocDrawerList li').forEach(function(li) {
+      li.classList.toggle('active', li.getAttribute('data-section') === current);
+    });
+    // Update fab label
+    var fabLabel = document.getElementById('tocFabLabel');
+    if (fabLabel && current) {
+      var el = document.getElementById(current);
+      if (el) {
+        var label = el.querySelector('.section-label span');
+        var title = el.querySelector('.section-title');
+        if (label && title) {
+          var num = label.textContent.trim();
+          var name = title.textContent.trim();
+          if (name.length > 18) name = name.substring(0, 16) + '...';
+          fabLabel.textContent = num + ' ' + name;
+        }
+      }
+    }
+  }
+
+  function closeTocDrawer() {
+    document.getElementById('tocDrawer').classList.remove('open');
+    document.getElementById('tocBackdrop').classList.remove('open');
+  }
+
+  // Responsive TOC
+  function checkTOC() {
+    if (window.innerWidth > 960) {
+      document.body.classList.add('has-toc');
+    } else {
+      document.body.classList.remove('has-toc');
+    }
+  }
+  checkTOC();
+  window.addEventListener('resize', checkTOC);
+
+  // FAB click
+  document.getElementById('tocFab').addEventListener('click', function() {
+    document.getElementById('tocDrawer').classList.toggle('open');
+    document.getElementById('tocBackdrop').classList.toggle('open');
+  });
+  document.getElementById('tocBackdrop').addEventListener('click', closeTocDrawer);
+
+  // Build initial TOC
+  var activeSessionEl = document.querySelector('.session-content.active');
+  if (activeSessionEl) buildTOC(activeSessionEl.id);
 
   // Set Hartman logo
   var logoEl = document.getElementById('hartmanLogo');
