@@ -30,18 +30,18 @@
 .session-content{display:none}.session-content.active{display:block}
 
 /* STICKY NAV */
-.sticky-nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border-light);padding:0 48px;transition:box-shadow .2s}.sticky-nav.scrolled{box-shadow:0 1px 8px rgba(0,0,0,.04)}.nav-inner{max-width:860px;margin:0 auto;display:flex;gap:0;overflow-x:auto;scrollbar-width:none}.nav-inner::-webkit-scrollbar{display:none}.nav-tab{padding:14px 20px;font-size:13px;font-weight:500;color:var(--text-light);cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent;transition:all .15s;user-select:none}.nav-tab:hover{color:var(--text)}.nav-tab.active{color:var(--text);border-bottom-color:var(--accent)}
+.sticky-nav{position:sticky;top:0;z-index:101;background:rgba(255,255,255,.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border-light);padding:0 48px;transition:box-shadow .2s}.sticky-nav.scrolled{box-shadow:0 1px 8px rgba(0,0,0,.04)}.nav-inner{max-width:860px;margin:0 auto;display:flex;gap:0;overflow-x:auto;scrollbar-width:none}.nav-inner::-webkit-scrollbar{display:none}.nav-tab{padding:14px 20px;font-size:13px;font-weight:500;color:var(--text-light);cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent;transition:all .15s;user-select:none}.nav-tab:hover{color:var(--text)}.nav-tab.active{color:var(--text);border-bottom-color:var(--accent)}
 
 /* PROGRESS */
-.progress-wrap{max-width:860px;margin:0 auto;padding:16px 48px 0}.progress-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}.progress-row span{font-size:12px;color:var(--text-light);font-weight:500}.progress-row .pct{color:var(--accent);font-weight:600}.progress-track{width:100%;height:3px;background:var(--border-light);border-radius:2px;overflow:hidden}.progress-fill{height:100%;width:0%;background:var(--accent);border-radius:2px;transition:width .5s ease}
+.progress-wrap{position:sticky;top:46px;z-index:99;background:rgba(255,255,255,.97);backdrop-filter:blur(8px);border-bottom:1px solid var(--border-light);padding:10px 48px}.progress-wrap-inner{max-width:860px;margin:0 auto}.progress-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px}.progress-row span{font-size:12px;color:var(--text-light);font-weight:500}.progress-row .pct{color:var(--session-accent,var(--accent));font-weight:600}.progress-track{width:100%;height:4px;background:var(--border-light);border-radius:2px;overflow:hidden}.progress-fill{height:100%;width:0%;background:var(--session-accent,var(--accent));border-radius:2px;transition:width .5s ease}
 
 /* CONTAINER */
-.container{max-width:860px;margin:0 auto;padding:0 48px}
+.container{max-width:860px;margin:0 auto;padding:24px 48px;display:flex;flex-direction:column;gap:16px}
 
-/* SECTIONS */
-.section{padding:64px 0;opacity:1;transform:translateY(0)}.section+.section{border-top:1px solid var(--border-light)}
+/* SECTIONS — lesson modules */
+.section{padding:40px 0;opacity:1;transform:translateY(0)}.section+.section{border-top:1px solid var(--border-light)}
 .section-label{display:flex;align-items:center;gap:12px;margin-bottom:14px}.section-label::before,.section-label::after{content:'';width:20px;height:1px;background:var(--border)}.section-label span{font-size:11px;font-weight:500;letter-spacing:2.5px;text-transform:uppercase;color:var(--text-light)}
-.section-title{font-family:var(--font-display);font-size:34px;font-weight:400;letter-spacing:-.3px;margin-bottom:8px;color:var(--text)}.section-subtitle{font-size:16px;color:var(--text-secondary);margin-bottom:36px;font-weight:300}
+.section-title{font-family:var(--font-display);font-size:28px;font-weight:400;letter-spacing:-.3px;margin-bottom:6px;color:var(--text)}.section-subtitle{font-size:15px;color:var(--text-secondary);margin-bottom:24px;font-weight:300}
 
 /* COLLAPSIBLE */
 .collapsible{background:var(--bg);border:1px solid var(--border);border-radius:8px;overflow:hidden}.collapsible-header{display:flex;align-items:center;justify-content:space-between;padding:20px 24px;cursor:pointer;user-select:none;transition:background .15s}.collapsible-header:hover{background:var(--bg-warm)}.collapsible-header h3{font-size:16px;font-weight:600;color:var(--text)}.collapsible-arrow{font-size:14px;color:var(--text-light);transition:transform .3s ease}.collapsible.open .collapsible-arrow{transform:rotate(180deg)}.collapsible-body{max-height:0;overflow:hidden;transition:max-height .4s ease}.collapsible.open .collapsible-body{max-height:2000px}.collapsible-content{padding:0 24px 24px}
@@ -135,10 +135,10 @@
 #passwordGate.gate-exit{opacity:0;transition:opacity .4s ease}
 
 /* TABLET BREAKPOINT */
-@media(max-width:960px){.hero{padding:52px 36px}.hero h1{font-size:42px}.container,.progress-wrap{padding:0 32px}.app-grid{grid-template-columns:1fr 1fr}.session-tab{padding:14px 20px;font-size:13px}.callout-banner{margin-left:-32px;margin-right:-32px;padding-left:32px;padding-right:32px}.container>.section:nth-child(even){margin-left:-32px;margin-right:-32px;padding-left:32px;padding-right:32px}}
+@media(max-width:960px){.hero{padding:52px 36px}.hero h1{font-size:42px}.container{padding:24px 32px}.progress-wrap{padding:10px 32px}.app-grid{grid-template-columns:1fr 1fr}.session-tab{padding:14px 20px;font-size:13px}.callout-banner{margin-left:-32px;margin-right:-32px;padding-left:32px;padding-right:32px}.section{padding:28px 24px}}
 
 /* RESPONSIVE */
-@media(max-width:700px){.hero{padding:48px 24px}.hero h1{font-size:36px}.container,.progress-wrap{padding:0 24px}.card-grid,.tool-grid{grid-template-columns:1fr}.app-grid{grid-template-columns:1fr}.sticky-nav,.session-tabs{padding:0 16px}.equation-row{gap:6px}.callout-banner{margin-left:-24px;margin-right:-24px;padding-left:24px;padding-right:24px}.container>.section:nth-child(even){margin-left:-24px;margin-right:-24px;padding-left:24px;padding-right:24px}}
+@media(max-width:700px){.hero{padding:48px 24px}.hero h1{font-size:36px}.container{padding:16px 16px}.progress-wrap{padding:10px 16px}.card-grid,.tool-grid{grid-template-columns:1fr}.app-grid{grid-template-columns:1fr}.sticky-nav,.session-tabs{padding:0 16px}.equation-row{gap:6px}.callout-banner{margin-left:0;margin-right:0;padding-left:24px;padding-right:24px;border-radius:8px}.section{padding:24px 20px;border-radius:8px}}
 
 /* MEDIA */
 .media-block{margin:24px 0}.media-block video,.media-block iframe{display:block}
@@ -148,16 +148,20 @@
 .example-label{font-size:13px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--session-accent,var(--accent));margin:4px 0 16px;padding-bottom:8px;border-bottom:1px dashed var(--border-light)}
 
 /* CALLOUT BANNER */
-.callout-banner{background:var(--accent-dark);color:white;margin:0 -48px 28px;padding:32px 48px;border-left:4px solid var(--accent);border-radius:0}
+.callout-banner{background:var(--accent-dark);color:white;margin:0 -32px 24px;padding:28px 32px;border-left:4px solid var(--accent);border-radius:8px}
 .callout-banner .callout-title{color:var(--accent);font-style:normal;font-weight:600}
 .callout-banner p{color:rgba(255,255,255,.7)}
 
-/* ALTERNATING SECTION BACKGROUNDS */
-.container>.section:nth-child(even){background:var(--bg-warm);margin-left:-48px;margin-right:-48px;padding-left:48px;padding-right:48px;border-radius:0}
+/* ALTERNATING SECTION BACKGROUNDS (overridden by lesson module style) */
 
 /* GRADIENT SECTION DIVIDERS */
 .section+.section{border-top:none;position:relative}
-.section+.section::before{content:'';display:block;height:1px;background:linear-gradient(90deg,transparent,var(--border),var(--session-accent,var(--accent)),var(--border),transparent);margin-bottom:0}
+.section+.section::before{content:'';display:block;height:2px;background:linear-gradient(90deg,transparent,var(--border),var(--session-accent,var(--accent)),var(--border),transparent);margin-bottom:0}
+
+/* LESSON MODULE STYLE */
+.section{background:var(--white);border-radius:12px;margin-bottom:16px;padding:36px 32px;border:1px solid var(--border-light);box-shadow:0 1px 4px rgba(0,0,0,.03)}
+.section+.section::before{display:none}
+.container>.section:nth-child(even){background:var(--white);margin-left:0;margin-right:0;padding-left:32px;padding-right:32px;border-radius:12px}
 
 /* ACCORDION GROUP */
 .accordion-group{background:var(--bg-muted);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:8px;margin-top:12px}
@@ -179,7 +183,7 @@
 .reading-time{display:inline-block;font-size:12px;color:var(--text-light);background:var(--bg-muted);padding:2px 10px;border-radius:10px;margin-left:12px;font-weight:500}
 
 /* PRINT */
-@media print{#passwordGate,.scroll-top,.sticky-nav,.session-tabs,.progress-wrap,.copy-btn{display:none!important}.session-content{display:block!important;opacity:1!important;transform:none!important}.collapsible-body,.wf-body{max-height:none!important;overflow:visible!important}.section{opacity:1!important;transform:none!important}body{background:#fff}a[href]::after{content:" (" attr(href) ")";font-size:12px;color:#666}.callout-banner{background:#f5f5f5!important;color:#333!important}.callout-banner .callout-title{color:#333!important}.callout-banner p{color:#666!important}.container>.section:nth-child(even){margin-left:0;margin-right:0;padding-left:0;padding-right:0}}
+@media print{#passwordGate,.scroll-top,.sticky-nav,.session-tabs,.progress-wrap,.copy-btn{display:none!important}.session-content{display:block!important;opacity:1!important;transform:none!important}.collapsible-body,.wf-body{max-height:none!important;overflow:visible!important}.section{opacity:1!important;transform:none!important}body{background:#fff}a[href]::after{content:" (" attr(href) ")";font-size:12px;color:#666}.callout-banner{background:#f5f5f5!important;color:#333!important}.callout-banner .callout-title{color:#333!important}.callout-banner p{color:#666!important}.section{border:none!important;box-shadow:none!important;margin-bottom:0!important}}
 </style>
 </head>
 <body>
@@ -265,7 +269,7 @@ if(sessionStorage.getItem('hartmanAuth')==='1'){
     <div class="nav-tab" data-section="s1-tools">Tools</div>
   </div>
 </div>
-<div class="progress-wrap"><div class="progress-row"><span class="progress-section-label">Your progress</span><span class="pct" id="progressPct1">0%</span></div><div class="progress-track"><div class="progress-fill" id="progressFill1"></div></div></div>
+<div class="progress-wrap"><div class="progress-wrap-inner"><div class="progress-row"><span class="progress-section-label">Your progress</span><span class="pct" id="progressPct1">0%</span></div><div class="progress-track"><div class="progress-fill" id="progressFill1"></div></div></div></div>
 
 <div class="container">
 
@@ -274,7 +278,7 @@ if(sessionStorage.getItem('hartmanAuth')==='1'){
   <div class="section-label"><span>01</span></div>
   <div class="section-title">How AI Actually Works</div>
   <div class="section-subtitle">The mental model you need, nothing more. <span class="reading-time">~2 min</span></div>
-  <div class="collapsible open">
+  <div class="collapsible">
     <div class="collapsible-header"><h3>The formula behind "intelligent" AI</h3><div class="collapsible-arrow">&#9662;</div></div>
     <div class="collapsible-body"><div class="collapsible-content">
       <div class="equation-row">
@@ -448,14 +452,14 @@ Maintain the scholarly but accessible tone that Hartman is known for.</div><butt
 <div class="sticky-nav" id="stickyNav2">
   <div class="nav-inner">
     <div class="nav-tab active" data-section="s2-what">What's an Agent?</div>
-    <div class="nav-tab" data-section="s2-setup">Setup Walkthrough</div>
     <div class="nav-tab" data-section="s2-data">Excel Agent</div>
+    <div class="nav-tab" data-section="s2-setup">Build Your Own</div>
     <div class="nav-tab" data-section="s2-email">Write Like Me</div>
     <div class="nav-tab" data-section="s2-report">Report Writer</div>
     <div class="nav-tab" data-section="s2-tips">Tips &amp; Next Steps</div>
   </div>
 </div>
-<div class="progress-wrap"><div class="progress-row"><span class="progress-section-label">Your progress</span><span class="pct" id="progressPct2">0%</span></div><div class="progress-track"><div class="progress-fill" id="progressFill2"></div></div></div>
+<div class="progress-wrap"><div class="progress-wrap-inner"><div class="progress-row"><span class="progress-section-label">Your progress</span><span class="pct" id="progressPct2">0%</span></div><div class="progress-track"><div class="progress-fill" id="progressFill2"></div></div></div></div>
 
 <div class="container">
 
@@ -466,7 +470,7 @@ Maintain the scholarly but accessible tone that Hartman is known for.</div><butt
   <div class="section-subtitle">The shift from chatting with AI to delegating work to AI. <span class="reading-time">~4 min</span></div>
 
   <div class="accordion-group">
-  <div class="collapsible open">
+  <div class="collapsible">
     <div class="collapsible-header"><h3>Chat vs. Agent</h3><div class="collapsible-arrow">&#9662;</div></div>
     <div class="collapsible-body"><div class="collapsible-content">
       <div class="card-grid" style="margin-top:16px;">
@@ -477,7 +481,7 @@ Maintain the scholarly but accessible tone that Hartman is known for.</div><butt
     </div></div>
   </div>
 
-  <div class="collapsible open" style="margin-top:12px;">
+  <div class="collapsible" style="margin-top:12px;">
     <div class="collapsible-header"><h3>The five components of every agent</h3><div class="collapsible-arrow">&#9662;</div></div>
     <div class="collapsible-body"><div class="collapsible-content">
       <div class="equation-row" style="margin-top:16px;">
@@ -508,26 +512,11 @@ Maintain the scholarly but accessible tone that Hartman is known for.</div><butt
   <div class="wf-note" style="margin-top:16px;"><strong>Benchmark test:</strong> Before building any agent, try the same task in regular Copilot chat first. Screenshot the result. This is your "before." If the agent doesn't beat the baseline, something needs to be adjusted.</div>
 </div>
 
-<!-- SETUP WALKTHROUGH -->
-<div class="section" id="s2-setup">
-  <div class="section-label"><span>02</span></div>
-  <div class="section-title">Setting Up an Agent in Copilot</div>
-  <div class="section-subtitle">Step-by-step walkthrough to create your first agent directly in <a href="https://m365.cloud.microsoft/" target="_blank">M365 Copilot</a>.</div>
-
-  <div class="step-card"><div class="step-num">1</div><h4>Open M365 Copilot</h4><p>Go to <a href="https://m365.cloud.microsoft/" target="_blank" style="color:var(--accent);">m365.cloud.microsoft</a> and open Copilot. In the chat interface, click <strong>"Create Agent"</strong> to start building your agent directly within M365 Copilot.</p></div>
-  <div class="step-card"><div class="step-num">2</div><h4>Name, Logo, and Description</h4><p>Give your agent a clear name (e.g., "Hartman Email Writer" or "Podcast Repurposer") and a brief description. Upload a logo or icon. The description helps you and your team understand what the agent is for.</p></div>
-  <div class="step-card"><div class="step-num">3</div><h4>Write the System Prompt (Instructions)</h4><p>This is the most important part. Write detailed instructions covering: the agent's role, tone and style guidelines, output format rules, and any constraints. System prompts are far more detailed than regular chat prompts.</p></div>
-  <div class="step-card"><div class="step-num">4</div><h4>Add Knowledge Sources</h4><p>Upload documents the agent should reference: Hartman's website, program descriptions, past proposals, brand guidelines. Connect Outlook and OneDrive so the agent can access your files and email history.</p></div>
-  <div class="step-card"><div class="step-num">5</div><h4>Set Capabilities</h4><p>Choose what the agent can do: search the web, read your emails, access your calendar, create files. Enable only what the agent needs for its specific job.</p></div>
-  <div class="step-card"><div class="step-num">6</div><h4>Add Suggested Prompts</h4><p>Create 3-4 starter prompts that appear when users open the agent. Examples: "Draft a thank-you letter to [donor name]" or "Turn this podcast transcript into a blog post."</p></div>
-  <div class="step-card"><div class="step-num">7</div><h4>Test and Share</h4><p>Use the test panel to try your agent. Compare output to regular Copilot. Adjust the system prompt until output is consistently good. Once working, share with your team via the agent library.</p></div>
-</div>
-
 <!-- THE EXCEL AGENT -->
 <div class="section" id="s2-data">
-  <div class="section-label"><span>03</span></div>
+  <div class="section-label"><span>02</span></div>
   <div class="section-title">The Excel Agent</div>
-  <div class="section-subtitle">A prebuilt agent inside Excel. Because Microsoft owns LinkedIn, it can access data no other AI system can. <span class="reading-time">~5 min</span></div>
+  <div class="section-subtitle">A prebuilt agent inside Excel with access to LinkedIn and web data. <span class="reading-time">~5 min</span></div>
 
   <div style="margin-bottom:28px;">
     <h3 style="font-size:16px;font-weight:600;margin-bottom:14px;color:var(--text);">What it can do</h3>
@@ -540,7 +529,7 @@ Maintain the scholarly but accessible tone that Hartman is known for.</div><butt
   </div>
 
   <div class="accordion-group">
-  <div class="collapsible open" style="margin-top:0;">
+  <div class="collapsible" style="margin-top:0;">
     <div class="collapsible-header"><h3>Qualitative Research</h3><div class="collapsible-arrow">&#9662;</div></div>
     <div class="collapsible-body"><div class="collapsible-content">
       <div class="example-label">Example: Donor Enrichment</div>
@@ -604,44 +593,68 @@ Do not specify exact dollar amounts if you don't have verified data. Use ranges 
   </div><!-- end accordion-group -->
 </div>
 
+<!-- SETUP WALKTHROUGH -->
+<div class="section" id="s2-setup">
+  <div class="section-label"><span>03</span></div>
+  <div class="section-title">Building Your Own Agent</div>
+  <div class="section-subtitle">Step-by-step walkthrough to create a custom agent in <a href="https://m365.cloud.microsoft/" target="_blank">M365 Copilot</a>.</div>
+
+  <div class="collapsible">
+    <div class="collapsible-header"><h3>Step-by-step: Create an agent in M365 Copilot</h3><div class="collapsible-arrow">&#9662;</div></div>
+    <div class="collapsible-body"><div class="collapsible-content">
+      <div class="step-card"><div class="step-num">1</div><h4>Open M365 Copilot</h4><p>Go to <a href="https://m365.cloud.microsoft/" target="_blank" style="color:var(--accent);">m365.cloud.microsoft</a> and open Copilot. In the <strong>left sidebar</strong>, click <strong>"New Agent"</strong> to start building.</p></div>
+      <div class="step-card"><div class="step-num">2</div><h4>Name, Logo, and Description</h4><p>Give your agent a clear name (e.g., "Hartman Email Writer" or "Podcast Repurposer") and a brief description. Upload a logo or icon.</p></div>
+      <div class="step-card"><div class="step-num">3</div><h4>Write the System Prompt (Instructions)</h4><p>The most important part. Write detailed instructions covering: role, tone, style guidelines, output format, and constraints.</p></div>
+      <div class="step-card"><div class="step-num">4</div><h4>Add Knowledge Sources</h4><p>Upload documents the agent should reference. Connect Outlook and OneDrive so the agent can access your files and email history.</p></div>
+      <div class="step-card"><div class="step-num">5</div><h4>Set Capabilities</h4><p>Choose what the agent can do: search the web, read your emails, access your calendar, create files. Enable only what it needs.</p></div>
+      <div class="step-card"><div class="step-num">6</div><h4>Add Suggested Prompts</h4><p>Create 3-4 starter prompts that appear when users open the agent.</p></div>
+      <div class="step-card"><div class="step-num">7</div><h4>Preview Your Agent</h4><p>Use the preview panel on the right to test before sharing.</p></div>
+    </div></div>
+  </div>
+</div>
+
 <!-- BUILD: WRITE LIKE ME AGENT -->
 <div class="section" id="s2-email">
   <div class="section-label"><span>04</span></div>
   <div class="section-title">Build: Write Like Me Agent</div>
   <div class="section-subtitle">An agent that writes emails in your exact voice &mdash; not generic AI output. <span class="reading-time">~4 min</span></div>
 
-  <div class="callout">
-    <div class="callout-title">Step 0: Benchmark first.</div>
-    <p>Before building the agent, go to plain Copilot chat and ask it to write a professional email about a topic of your choice. Screenshot the result. This is your "before" &mdash; the baseline you'll compare your agent against.</p>
+  <div class="collapsible">
+    <div class="collapsible-header"><h3>Build the agent step by step</h3><div class="collapsible-arrow">&#9662;</div></div>
+    <div class="collapsible-body"><div class="collapsible-content">
+      <div class="callout" style="margin-top:0;">
+        <div class="callout-title">Step 0: Benchmark first.</div>
+        <p>Before building the agent, go to plain Copilot chat and ask it to write a professional email about a topic of your choice. Screenshot the result. This is your "before."</p>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <h4>Extract your writing voice</h4>
+        <p>In Copilot Chat (<strong>Work</strong> tab, <strong>DeepThink</strong> mode), run this prompt. It analyzes your sent emails and generates a system prompt that captures your personal style.</p>
+      </div>
+      <div class="prompt-block" style="margin-bottom:20px;"><div class="prompt-label">Run This in Copilot Chat (Work tab, DeepThink mode)</div><div class="prompt-text">Please analyze my last 100 sent emails and extract my writing style, tone, vocabulary patterns, sentence structure, typical greetings and sign-offs, and overall voice. Turn this analysis into a detailed system prompt I can use to configure an AI agent to write emails that sound exactly like me.</div><button class="copy-btn">Copy</button></div>
+
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <h4>Create the agent</h4>
+        <p>In Copilot, click <strong>"New Agent"</strong> in the left sidebar. Toggle to <strong>"Configure"</strong> (not "Describe"). Fill in:</p>
+        <ul>
+          <li><strong>Name:</strong> "My Email Assistant" (or your own variant)</li>
+          <li><strong>Instructions:</strong> Paste the system prompt generated in Step 1</li>
+          <li><strong>Knowledge:</strong> Click "My Emails" to connect your Outlook email history</li>
+          <li><strong>Conversation starters:</strong> "Write a follow-up to..." / "Proofread this email" / "Draft a reply to [name] about [topic]"</li>
+        </ul>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <h4>Test and iterate</h4>
+        <p>Ask the agent: "Draft a reply to Anna about the donor research." Does it sound like you? If it gets the tone wrong, go back and add explicit corrections to the system prompt.</p>
+      </div>
+    </div></div>
   </div>
 
-  <div class="step-card">
-    <div class="step-num">1</div>
-    <h4>Extract your writing voice</h4>
-    <p>In Copilot Chat (<strong>Work</strong> tab, <strong>DeepThink</strong> mode), run this prompt. It analyzes your sent emails and generates a system prompt that captures your personal style.</p>
-  </div>
-  <div class="prompt-block" style="margin-bottom:20px;"><div class="prompt-label">Run This in Copilot Chat (Work tab, DeepThink mode)</div><div class="prompt-text">Please analyze my last 100 sent emails and extract my writing style, tone, vocabulary patterns, sentence structure, typical greetings and sign-offs, and overall voice. Turn this analysis into a detailed system prompt I can use to configure an AI agent to write emails that sound exactly like me.</div><button class="copy-btn">Copy</button></div>
-
-  <div class="step-card">
-    <div class="step-num">2</div>
-    <h4>Create the agent</h4>
-    <p>In Copilot, click <strong>"New Agent"</strong> in the left sidebar. Toggle to <strong>"Configure"</strong> (not "Describe"). Fill in:</p>
-    <ul>
-      <li><strong>Name:</strong> "My Email Assistant" (or your own variant)</li>
-      <li><strong>Description:</strong> Brief summary of what it does</li>
-      <li><strong>Instructions:</strong> Paste the system prompt generated in Step 1</li>
-      <li><strong>Knowledge:</strong> Click "My Emails" to connect your Outlook email history</li>
-      <li><strong>Conversation starters:</strong> "Write a follow-up to..." / "Proofread this email" / "Draft a reply to [name] about [topic]"</li>
-    </ul>
-  </div>
-
-  <div class="step-card">
-    <div class="step-num">3</div>
-    <h4>Test and iterate</h4>
-    <p>Ask the agent: "Draft a reply to Anna about the donor research." Does it sound like you? If it repeats mistakes (too formal, wrong sign-off, uses "I hope this email finds you well"), go back and add explicit corrections to the system prompt.</p>
-  </div>
-
-  <div class="collapsible" style="margin-top:20px;">
+  <div class="collapsible">
     <div class="collapsible-header"><h3>Using the agent across Microsoft 365 apps</h3><div class="collapsible-arrow">&#9662;</div></div>
     <div class="collapsible-body"><div class="collapsible-content">
       <p class="eq-note">Once built, your agent is available everywhere in Microsoft 365. In any app &mdash; Outlook, Word, Excel, Teams &mdash; type <strong>@</strong> in the Copilot sidebar and select your agent by name. In Outlook, the agent sees the email thread you're looking at and can draft a reply in context. Copy-paste the draft into the email (sending from Copilot is not yet available, intentionally for safety).</p>
@@ -661,21 +674,24 @@ Do not specify exact dollar amounts if you don't have verified data. Use ranges 
 
   <div class="callout">
     <div class="callout-title">One agent per program, not per donor.</div>
-    <p>Build agents by program (e.g., one for each initiative). The donor name and time period are always passed as inputs at runtime. One well-configured Report Writer agent serves all donor reports for that program.</p>
+    <p>Build agents by program (e.g., one for each initiative). The donor name and time period are always passed as inputs at runtime.</p>
   </div>
 
-  <div class="step-card">
-    <div class="step-num">1</div>
-    <h4>Benchmark first</h4>
-    <p>Upload an existing report or raw notes to plain Copilot and ask it to write a donor report. Screenshot the result &mdash; this is your "before."</p>
-  </div>
+  <div class="collapsible">
+    <div class="collapsible-header"><h3>Build the agent step by step</h3><div class="collapsible-arrow">&#9662;</div></div>
+    <div class="collapsible-body"><div class="collapsible-content">
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <h4>Benchmark first</h4>
+        <p>Upload an existing report or raw notes to plain Copilot and ask it to write a donor report. Screenshot the result &mdash; this is your "before."</p>
+      </div>
 
-  <div class="step-card">
-    <div class="step-num">2</div>
-    <h4>Extract your report template</h4>
-    <p>Take an existing report you want to replicate. Paste it into Copilot chat and ask AI to extract the structure:</p>
-  </div>
-  <div class="prompt-block" style="margin-bottom:20px;"><div class="prompt-label">Template Extraction Prompt</div><div class="prompt-text">Please extract the document structure, chapters, section headings, and writing style of this report. Then create a detailed system prompt for an AI agent that will generate new reports following this exact structure, tone, and formatting. The system prompt should instruct the agent to:
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <h4>Extract your report template</h4>
+        <p>Take an existing report you want to replicate. Paste it into Copilot chat and ask AI to extract the structure:</p>
+      </div>
+      <div class="prompt-block" style="margin-bottom:20px;"><div class="prompt-label">Template Extraction Prompt</div><div class="prompt-text">Please extract the document structure, chapters, section headings, and writing style of this report. Then create a detailed system prompt for an AI agent that will generate new reports following this exact structure, tone, and formatting. The system prompt should instruct the agent to:
 - Follow the extracted section structure exactly
 - Ask for the donor name and time period before generating
 - Use active voice and focus on impact
@@ -683,25 +699,27 @@ Do not specify exact dollar amounts if you don't have verified data. Use ranges 
 - Leave sections blank rather than fabricate content when no source material is provided
 - Always ask for source materials (meeting notes, program updates, etc.) before writing</div><button class="copy-btn">Copy</button></div>
 
-  <div class="step-card">
-    <div class="step-num">3</div>
-    <h4>Create the agent</h4>
-    <p>In Copilot, click <strong>"New Agent"</strong> &rarr; <strong>"Configure"</strong>:</p>
-    <ul>
-      <li><strong>Name:</strong> "[Program Name] Report Writer"</li>
-      <li><strong>Instructions:</strong> Paste the system prompt from Step 2</li>
-      <li><strong>Knowledge:</strong> Add relevant program website URLs (3-4 pages). Do NOT pre-upload source materials &mdash; users upload those fresh each time.</li>
-      <li><strong>Conversation starters:</strong> "I need to write a donor report" / "Here are my raw materials" / "Adapt this for a different donor"</li>
-    </ul>
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <h4>Create the agent</h4>
+        <p>In Copilot, click <strong>"New Agent"</strong> &rarr; <strong>"Configure"</strong>:</p>
+        <ul>
+          <li><strong>Name:</strong> "[Program Name] Report Writer"</li>
+          <li><strong>Instructions:</strong> Paste the system prompt from Step 2</li>
+          <li><strong>Knowledge:</strong> Add relevant program website URLs (3-4 pages). Do NOT pre-upload source materials.</li>
+          <li><strong>Conversation starters:</strong> "I need to write a donor report" / "Here are my raw materials"</li>
+        </ul>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num">4</div>
+        <h4>Use the agent</h4>
+        <p>Upload raw materials (meeting notes, WhatsApp exports, staff updates). Type: <strong>"Produce the report."</strong> The agent will ask for the donor name and time period, then generate the full document.</p>
+      </div>
+    </div></div>
   </div>
 
-  <div class="step-card">
-    <div class="step-num">4</div>
-    <h4>Use the agent</h4>
-    <p>Upload raw materials (meeting notes, WhatsApp exports, staff updates &mdash; multiple documents at once). Type: <strong>"Produce the report."</strong> The agent will ask for the donor name and time period, then generate the full structured document.</p>
-  </div>
-
-  <div class="collapsible" style="margin-top:20px;">
+  <div class="collapsible">
     <div class="collapsible-header"><h3>Advanced: Multiple agents working together</h3><div class="collapsible-arrow">&#9662;</div></div>
     <div class="collapsible-body"><div class="collapsible-content">
       <p class="eq-note">Chain agents for a full production workflow:</p>
@@ -750,7 +768,7 @@ Do not specify exact dollar amounts if you don't have verified data. Use ranges 
     <div class="nav-tab" data-section="s3-browsers">AI Browsers</div>
   </div>
 </div>
-<div class="progress-wrap"><div class="progress-row"><span class="progress-section-label">Your progress</span><span class="pct">0%</span></div><div class="progress-track"><div class="progress-fill"></div></div></div>
+<div class="progress-wrap"><div class="progress-wrap-inner"><div class="progress-row"><span class="progress-section-label">Your progress</span><span class="pct">0%</span></div><div class="progress-track"><div class="progress-fill"></div></div></div></div>
 
 <div class="container">
 
@@ -765,7 +783,7 @@ Do not specify exact dollar amounts if you don't have verified data. Use ranges 
     <p>GEO is the next stage after SEO. While SEO was about ranking on Google's page 1, GEO is about influencing what AI systems say about you when users ask. 60% of searches are now zero-click &mdash; the answer is consumed without ever visiting your site.</p>
   </div>
 
-  <div class="collapsible open">
+  <div class="collapsible">
     <div class="collapsible-header"><h3>SEO vs. GEO</h3><div class="collapsible-arrow">&#9662;</div></div>
     <div class="collapsible-body"><div class="collapsible-content">
       <div class="card-grid" style="margin-top:16px;">
@@ -853,7 +871,7 @@ Do not specify exact dollar amounts if you don't have verified data. Use ranges 
     <p>Vibe coding means describing what you want in plain language and letting AI generate the code. The technical substrate is still code, but the user never writes it. We're going to be able to use basic simple language to build software and applications.</p>
   </div>
 
-  <div class="collapsible open">
+  <div class="collapsible">
     <div class="collapsible-header"><h3>Agent vs. Vibe Coding</h3><div class="collapsible-arrow">&#9662;</div></div>
     <div class="collapsible-body"><div class="collapsible-content">
       <div class="card-grid" style="margin-top:16px;">
