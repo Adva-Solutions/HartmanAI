@@ -142,6 +142,8 @@
 
 /* MEDIA */
 .media-block{margin:24px 0}.media-block video,.media-block iframe{display:block}
+.video-player{width:100%;border-radius:10px;border:1px solid var(--border-light);box-shadow:0 2px 12px rgba(0,0,0,.08)}
+.video-caption{font-size:13px;color:var(--text-light);margin-top:8px;text-align:center;font-weight:500}
 @media(max-width:700px){.media-block iframe[src$=".pdf"]{height:400px}}
 
 /* EXAMPLE LABEL (Excel Agent section) */
@@ -517,6 +519,14 @@ Maintain the scholarly but accessible tone that Hartman is known for.</div><butt
   <div class="section-label"><span>02</span></div>
   <div class="section-title">The Excel Agent</div>
   <div class="section-subtitle">A prebuilt agent inside Excel with access to LinkedIn and web data. <span class="reading-time">~5 min</span></div>
+
+  <div class="media-block" style="margin-bottom:28px;">
+    <video class="video-player" controls preload="metadata" playsinline>
+      <source src="videos/Microsoft Excel.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <div class="video-caption">Copilot in Excel: model selection, agent mode, and web data access</div>
+  </div>
 
   <div style="margin-bottom:28px;">
     <h3 style="font-size:16px;font-weight:600;margin-bottom:14px;color:var(--text);">What it can do</h3>
