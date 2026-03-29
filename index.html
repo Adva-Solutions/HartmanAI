@@ -83,8 +83,13 @@
 
 /* BONUS SECTION */
 .tool-category{display:inline-block;font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;padding:3px 10px;border-radius:10px;background:rgba(123,94,167,.12);color:#7b5ea7;margin-bottom:8px}
+.tool-card .tool-head-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
 .tool-card .tool-name-row{display:flex;align-items:center;gap:10px;margin-bottom:4px}
 .tool-card .tool-logo{width:28px;height:28px;border-radius:6px;object-fit:contain;flex-shrink:0}
+.tool-badge{font-size:11px;font-weight:600;padding:2px 8px;border-radius:6px;letter-spacing:.3px;flex-shrink:0}
+.tool-badge.free{background:#e8f5e9;color:#2e7d32}.tool-badge.paid{background:#fff3e0;color:#e65100}.tool-badge.freemium{background:#e3f2fd;color:#1565c0}
+.tool-prompt{margin-top:10px;padding:10px 12px;background:var(--bg-warm,#faf9f7);border-radius:6px;font-size:13px;color:var(--text-secondary);line-height:1.5}
+.tool-prompt strong{color:var(--text);font-size:12px;text-transform:uppercase;letter-spacing:.5px}
 .tool-card .try-link{display:inline-block;margin-top:12px;font-size:13px;font-weight:600;color:var(--session-accent,#7b5ea7);text-decoration:none;transition:color .15s}
 .tool-card .try-link:hover{text-decoration:underline}
 
@@ -821,69 +826,80 @@ Do not specify exact dollar amounts if you don't have verified data. Use ranges 
 
   <div class="tool-grid">
     <div class="tool-card">
-      <div class="tool-category">Music</div>
+      <div class="tool-head-row"><div class="tool-category">Music</div><span class="tool-badge free">Free</span></div>
       <div class="tool-name-row"><img class="tool-logo" src="https://www.google.com/s2/favicons?domain=suno.com&sz=64" alt="Suno"><div class="tool-name">Suno</div></div>
       <div class="tool-desc">Generate original songs from a text prompt. Imagine custom music for gala dinners, program openings, or a fun Shabbat sing-along &mdash; composed in seconds.</div>
+      <div class="tool-prompt"><strong>Try this:</strong> "An upbeat klezmer-inspired welcome song for a Jewish education conference"</div>
       <a class="try-link" href="https://suno.com" target="_blank">Try it free &rarr;</a>
     </div>
     <div class="tool-card">
-      <div class="tool-category">Video</div>
+      <div class="tool-head-row"><div class="tool-category">Video</div><span class="tool-badge freemium">Freemium</span></div>
       <div class="tool-name-row"><img class="tool-logo" src="https://www.google.com/s2/favicons?domain=runwayml.com&sz=64" alt="Runway"><div class="tool-name">Runway</div></div>
       <div class="tool-desc">Turn a text description or a single photo into a cinematic video clip. Create compelling visuals for donor campaigns or social media without a film crew.</div>
+      <div class="tool-prompt"><strong>Try this:</strong> Upload a photo of your office or campus and select "Animate" to bring it to life</div>
       <a class="try-link" href="https://runwayml.com" target="_blank">Try it free &rarr;</a>
     </div>
     <div class="tool-card">
-      <div class="tool-category">Voice</div>
+      <div class="tool-head-row"><div class="tool-category">Voice</div><span class="tool-badge freemium">Freemium</span></div>
       <div class="tool-name-row"><img class="tool-logo" src="https://www.google.com/s2/favicons?domain=elevenlabs.io&sz=64" alt="ElevenLabs"><div class="tool-name">ElevenLabs</div></div>
       <div class="tool-desc">Generate lifelike narration in Hebrew, English, and 30+ languages. Add professional voiceovers to lecture recordings, explainer videos, or audio guides for visitors.</div>
+      <div class="tool-prompt"><strong>Try this:</strong> Paste a paragraph from a recent publication and generate it as a Hebrew voiceover</div>
       <a class="try-link" href="https://elevenlabs.io" target="_blank">Try it free &rarr;</a>
     </div>
     <div class="tool-card">
-      <div class="tool-category">Images</div>
+      <div class="tool-head-row"><div class="tool-category">Images</div><span class="tool-badge paid">Paid</span></div>
       <div class="tool-name-row"><img class="tool-logo" src="https://www.google.com/s2/favicons?domain=midjourney.com&sz=64" alt="Midjourney"><div class="tool-name">Midjourney</div></div>
       <div class="tool-desc">Create stunning visuals from a text prompt &mdash; think event invitations, annual report covers, or social media graphics that look professionally designed.</div>
+      <div class="tool-prompt"><strong>Try this:</strong> "A watercolor illustration of an ancient Jerusalem library filled with warm golden light"</div>
       <a class="try-link" href="https://www.midjourney.com" target="_blank">Try it &rarr;</a>
     </div>
     <div class="tool-card">
-      <div class="tool-category">Avatars</div>
+      <div class="tool-head-row"><div class="tool-category">Avatars</div><span class="tool-badge freemium">Freemium</span></div>
       <div class="tool-name-row"><img class="tool-logo" src="https://www.google.com/s2/favicons?domain=heygen.com&sz=64" alt="HeyGen"><div class="tool-name">HeyGen</div></div>
       <div class="tool-desc">Record a 15-second clip and get an AI avatar that speaks for you. Translate a scholar's lecture from English to Hebrew (or 175 other languages) with perfect lip sync.</div>
+      <div class="tool-prompt"><strong>Try this:</strong> Record yourself saying one sentence in English, then translate it to Hebrew or Arabic</div>
       <a class="try-link" href="https://www.heygen.com" target="_blank">Try it free &rarr;</a>
     </div>
     <div class="tool-card">
-      <div class="tool-category">Design</div>
+      <div class="tool-head-row"><div class="tool-category">Design</div><span class="tool-badge free">Free for Nonprofits</span></div>
       <div class="tool-name-row"><img class="tool-logo" src="https://www.google.com/s2/favicons?domain=canva.com&sz=64" alt="Canva AI"><div class="tool-name">Canva AI</div></div>
       <div class="tool-desc">Magic Studio generates event flyers, newsletters, and social posts from a single prompt &mdash; on brand, in seconds. <strong>Pro is free for registered nonprofits.</strong></div>
+      <div class="tool-prompt"><strong>Try this:</strong> Click "Magic Design" and type "Instagram post announcing a new fellowship program"</div>
       <a class="try-link" href="https://www.canva.com" target="_blank">Try it free &rarr;</a>
     </div>
     <div class="tool-card">
-      <div class="tool-category">Research</div>
+      <div class="tool-head-row"><div class="tool-category">Research</div><span class="tool-badge free">Free</span></div>
       <div class="tool-name-row"><img class="tool-logo" src="https://www.google.com/s2/favicons?domain=perplexity.ai&sz=64" alt="Perplexity"><div class="tool-name">Perplexity</div></div>
       <div class="tool-desc">Ask a complex question, get a sourced, cited answer in seconds. Ideal for grant research, competitive landscape analysis, or prepping background briefs for scholars.</div>
+      <div class="tool-prompt"><strong>Try this:</strong> "What are the top 10 foundations funding Jewish education in North America?"</div>
       <a class="try-link" href="https://www.perplexity.ai" target="_blank">Try it free &rarr;</a>
     </div>
     <div class="tool-card">
-      <div class="tool-category">Presentations</div>
+      <div class="tool-head-row"><div class="tool-category">Presentations</div><span class="tool-badge free">Free</span></div>
       <div class="tool-name-row"><img class="tool-logo" src="https://www.google.com/s2/favicons?domain=gamma.app&sz=64" alt="Gamma"><div class="tool-name">Gamma</div></div>
       <div class="tool-desc">Paste a program outline or research summary and get a polished slide deck in seconds. Perfect for board presentations, donor meetings, or lecture visuals.</div>
+      <div class="tool-prompt"><strong>Try this:</strong> Paste the executive summary from your last annual report and click "Generate"</div>
       <a class="try-link" href="https://gamma.app" target="_blank">Try it free &rarr;</a>
     </div>
     <div class="tool-card">
-      <div class="tool-category">Logos &amp; Text</div>
+      <div class="tool-head-row"><div class="tool-category">Logos &amp; Text</div><span class="tool-badge free">Free</span></div>
       <div class="tool-name-row"><img class="tool-logo" src="https://www.google.com/s2/favicons?domain=ideogram.ai&sz=64" alt="Ideogram"><div class="tool-name">Ideogram</div></div>
       <div class="tool-desc">The only AI image tool that renders text correctly. Generate event posters, program banners, or social graphics with readable headlines &mdash; no designer needed.</div>
+      <div class="tool-prompt"><strong>Try this:</strong> "A modern poster that reads 'Hartman Institute Annual Gala 2026' with elegant gold typography"</div>
       <a class="try-link" href="https://ideogram.ai" target="_blank">Try it free &rarr;</a>
     </div>
     <div class="tool-card">
-      <div class="tool-category">Podcasts</div>
+      <div class="tool-head-row"><div class="tool-category">Podcasts</div><span class="tool-badge free">Free</span></div>
       <div class="tool-name-row"><img class="tool-logo" src="https://www.google.com/s2/favicons?domain=notebooklm.google.com&sz=64" alt="NotebookLM"><div class="tool-name">NotebookLM</div></div>
       <div class="tool-desc">Upload a research paper or policy brief and Google turns it into a podcast-style discussion between two AI hosts. Repurpose long-form scholarship into listenable content.</div>
+      <div class="tool-prompt"><strong>Try this:</strong> Upload a recent Hartman publication and click "Generate Audio Overview"</div>
       <a class="try-link" href="https://notebooklm.google.com" target="_blank">Try it free &rarr;</a>
     </div>
     <div class="tool-card">
-      <div class="tool-category">Video + Audio</div>
+      <div class="tool-head-row"><div class="tool-category">Video + Audio</div><span class="tool-badge free">Free</span></div>
       <div class="tool-name-row"><img class="tool-logo" src="https://www.google.com/s2/favicons?domain=aistudio.google.com&sz=64" alt="Veo 3"><div class="tool-name">Google Veo 3</div></div>
       <div class="tool-desc">Describe a scene and get a video clip with built-in sound, dialogue, and ambient audio. Create short promo videos or visual storytelling for campaigns without a production team.</div>
+      <div class="tool-prompt"><strong>Try this:</strong> "A 5-second intro clip: sunrise over Jerusalem's Old City with birds chirping and soft music"</div>
       <a class="try-link" href="https://aistudio.google.com" target="_blank">Try it free &rarr;</a>
     </div>
   </div>
