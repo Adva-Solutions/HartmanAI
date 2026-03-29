@@ -111,9 +111,14 @@
   </div>
 </div>
 <script>
-function checkPassword(){
+async function hashStr(s){
+  var buf=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));
+  return Array.from(new Uint8Array(buf)).map(function(b){return b.toString(16).padStart(2,'0')}).join('');
+}
+async function checkPassword(){
   var input=document.getElementById('passwordInput');
-  if(input.value==='hartmanAI!'){
+  var h=await hashStr(input.value);
+  if(h==='68de93a2bc17098d49ada7ebdca7f43033af7239ad0a6eda99eb1d0d70b90d6d'){
     document.getElementById('passwordGate').style.display='none';
     sessionStorage.setItem('hartmanAuth','1');
   } else {
