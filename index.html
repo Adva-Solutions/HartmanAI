@@ -97,6 +97,41 @@
 </head>
 <body>
 
+<!-- PASSWORD GATE -->
+<div id="passwordGate" style="position:fixed;inset:0;z-index:9999;background:var(--accent-dark);display:flex;align-items:center;justify-content:center;">
+  <div style="text-align:center;max-width:400px;padding:24px;">
+    <div style="font-family:var(--font-display);font-size:36px;color:var(--white);margin-bottom:8px;">AI Toolkit</div>
+    <p style="font-size:15px;color:rgba(255,255,255,.45);margin-bottom:32px;">Enter the password to access this resource.</p>
+    <input id="passwordInput" type="password" placeholder="Password" autofocus
+      style="width:100%;padding:14px 18px;font-size:16px;font-family:var(--font-body);border:1px solid rgba(255,255,255,.15);border-radius:8px;background:rgba(255,255,255,.06);color:var(--white);outline:none;margin-bottom:12px;"
+      onkeydown="if(event.key==='Enter')checkPassword()">
+    <button onclick="checkPassword()"
+      style="width:100%;padding:14px;font-size:15px;font-weight:600;font-family:var(--font-body);background:var(--accent);color:var(--white);border:none;border-radius:8px;cursor:pointer;letter-spacing:.3px;">Enter</button>
+    <p id="passwordError" style="font-size:13px;color:#e57373;margin-top:12px;display:none;">Incorrect password. Please try again.</p>
+  </div>
+</div>
+<script>
+async function hashStr(s){
+  var buf=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));
+  return Array.from(new Uint8Array(buf)).map(function(b){return b.toString(16).padStart(2,'0')}).join('');
+}
+async function checkPassword(){
+  var input=document.getElementById('passwordInput');
+  var h=await hashStr(input.value);
+  if(h==='68de93a2bc17098d49ada7ebdca7f43033af7239ad0a6eda99eb1d0d70b90d6d'){
+    document.getElementById('passwordGate').style.display='none';
+    sessionStorage.setItem('hartmanAuth','1');
+  } else {
+    document.getElementById('passwordError').style.display='block';
+    input.value='';
+    input.focus();
+  }
+}
+if(sessionStorage.getItem('hartmanAuth')==='1'){
+  document.getElementById('passwordGate').style.display='none';
+}
+</script>
+
 <!-- HERO -->
 <div class="hero">
   <div class="hero-inner">
@@ -116,7 +151,7 @@
   <div class="session-tabs-inner">
     <div class="session-tab active" data-session="session1">Session 1: AI Foundations</div>
     <div class="session-tab" data-session="session2">Session 2: Building Agents</div>
-    <div class="session-tab" data-session="session3">Session 3: Coming Soon</div>
+    <div class="session-tab" data-session="session3">Session 3: GEO &amp; Vibe Coding</div>
   </div>
 </div>
 
@@ -318,10 +353,9 @@ Maintain the scholarly but accessible tone that Hartman is known for.</div><butt
   <div class="nav-inner">
     <div class="nav-tab active" data-section="s2-what">What's an Agent?</div>
     <div class="nav-tab" data-section="s2-setup">Setup Walkthrough</div>
-    <div class="nav-tab" data-section="s2-email">Email Agent</div>
-    <div class="nav-tab" data-section="s2-content">Content Agent</div>
-    <div class="nav-tab" data-section="s2-excel">Excel Agent</div>
-    <div class="nav-tab" data-section="s2-vibe">Vibe Coding</div>
+    <div class="nav-tab" data-section="s2-data">Donor Research</div>
+    <div class="nav-tab" data-section="s2-email">Write Like Me</div>
+    <div class="nav-tab" data-section="s2-report">Report Writer</div>
     <div class="nav-tab" data-section="s2-tips">Tips &amp; Next Steps</div>
   </div>
 </div>
@@ -333,30 +367,54 @@ Maintain the scholarly but accessible tone that Hartman is known for.</div><butt
 <div class="section" id="s2-what">
   <div class="section-label"><span>01</span></div>
   <div class="section-title">What's an Agent?</div>
-  <div class="section-subtitle">An agent is a pre-configured AI assistant with its own instructions, knowledge, and personality.</div>
-  <div class="callout">
-    <div class="callout-title">An agent is like a specialized employee.</div>
-    <p>Instead of starting every conversation from scratch and explaining who you are, what you need, and how you want it done, an agent already knows all of that. You teach it once and it remembers every time. The prediction is that knowledge workers will manage agents as a core job function. Someone with agents will be 10x more productive.</p>
-  </div>
+  <div class="section-subtitle">The shift from chatting with AI to delegating work to AI.</div>
+
   <div class="collapsible open">
-    <div class="collapsible-header"><h3>The four components of every agent</h3><div class="collapsible-arrow">&#9662;</div></div>
+    <div class="collapsible-header"><h3>Chat vs. Agent</h3><div class="collapsible-arrow">&#9662;</div></div>
     <div class="collapsible-body"><div class="collapsible-content">
       <div class="card-grid" style="margin-top:16px;">
-        <div class="card"><div class="card-head"><div class="icon icon-accent"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><div class="card-title">System Prompt</div></div><div class="card-desc">Detailed instructions that tell the agent who it is, how it should behave, and what rules to follow. Much more extensive than a regular chat prompt.</div></div>
-        <div class="card"><div class="card-head"><div class="icon icon-accent"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div><div class="card-title">Tools</div></div><div class="card-desc">Capabilities the agent can use: creating presentations, sending emails, searching the web, analyzing spreadsheets, scheduling meetings.</div></div>
-        <div class="card"><div class="card-head"><div class="icon icon-accent"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div><div class="card-title">Knowledge</div></div><div class="card-desc">Documents, PDFs, and websites the agent can reference. Upload Hartman's website, program descriptions, or past proposals so the agent draws on real content.</div></div>
-        <div class="card"><div class="card-head"><div class="icon icon-accent"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div class="card-title">Memory</div></div><div class="card-desc">Context that persists across conversations. The agent remembers your preferences, communication style, and past interactions.</div></div>
+        <div class="card"><div class="card-head"><div class="icon"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><div class="card-title">Chat</div></div><div class="card-desc">A linear, one-turn-at-a-time interaction. You ask, it answers. You redirect. It responds. <strong>You</strong> are the one planning and executing each step.</div></div>
+        <div class="card"><div class="card-head"><div class="icon icon-accent"><svg viewBox="0 0 24 24"><path d="M12 2a4 4 0 0 0-4 4v2H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2h-2V6a4 4 0 0 0-4-4z"/><circle cx="12" cy="15" r="1"/></svg></div><div class="card-title">Agent</div></div><div class="card-desc">A system with a defined role, autonomy to plan its own steps, tools to take actions, and knowledge to draw from. <strong>The agent</strong> plans and executes.</div></div>
+      </div>
+      <div class="wf-note" style="margin-top:16px;"><strong>Analogy:</strong> Planning a trip to Italy. A <em>chat</em> can help you research nice places, compare flights, and think through options. An <em>agent</em> can actually book the trip, coordinate hotels, check museum availability, and take action.</div>
+    </div></div>
+  </div>
+
+  <div class="collapsible open" style="margin-top:12px;">
+    <div class="collapsible-header"><h3>The five components of every agent</h3><div class="collapsible-arrow">&#9662;</div></div>
+    <div class="collapsible-body"><div class="collapsible-content">
+      <div class="equation-row" style="margin-top:16px;">
+        <div class="eq-block"><div class="label">Brain</div><div class="value">Model</div></div><div class="eq-op">+</div>
+        <div class="eq-block"><div class="label">Training</div><div class="value">System Prompt</div></div><div class="eq-op">+</div>
+        <div class="eq-block"><div class="label">Hands</div><div class="value">Tools</div></div><div class="eq-op">+</div>
+        <div class="eq-block"><div class="label">Experience</div><div class="value">Memory</div></div><div class="eq-op">+</div>
+        <div class="eq-block"><div class="label">Library</div><div class="value">Knowledge</div></div>
+        <div class="eq-op" style="color:rgba(255,255,255,.6);">=</div>
+        <div class="eq-block eq-result"><div class="label">Result</div><div class="value">AI Agent</div></div>
+      </div>
+      <div style="margin-top:20px;display:flex;flex-direction:column;gap:10px;">
+        <div class="card"><div class="card-head"><div class="icon icon-accent"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div><div class="card-title">Model</div></div><div class="card-desc">The brain. Could be Claude, GPT-4, Grok &mdash; any LLM. The model is agnostic. You can now select Claude directly within Copilot.</div></div>
+        <div class="card"><div class="card-head"><div class="icon icon-accent"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><div class="card-title">System Prompt</div></div><div class="card-desc">Personality, role, and instructions. Hard-codes what the agent knows how to do and how to behave. This is where you define expertise, constraints, and output style.</div></div>
+        <div class="card"><div class="card-head"><div class="icon icon-accent"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div><div class="card-title">Tools</div></div><div class="card-desc">What the agent can do in the world. Process a credit card, search the web, communicate with Expedia, write to a spreadsheet, access Salesforce.</div></div>
+        <div class="card"><div class="card-head"><div class="icon icon-accent"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div class="card-title">Memory</div></div><div class="card-desc">Context retention across sessions. Builds a preference profile over time. Agents today have limited memory but it's improving rapidly.</div></div>
+        <div class="card"><div class="card-head"><div class="icon icon-accent"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div><div class="card-title">Knowledge</div></div><div class="card-desc">External information sources uploaded to the agent. Examples: donor briefings, CFSS program reports, Warren Buffett's investment books, the Hartman website.</div></div>
       </div>
     </div></div>
   </div>
-  <div class="wf-note" style="margin-top:24px;"><strong>Benchmark test:</strong> Before building an agent, try the same task in regular Copilot chat first. This gives you a baseline to compare against. If the agent doesn't beat the baseline, something needs to be adjusted.</div>
+
+  <div class="callout" style="margin-top:24px;">
+    <div class="callout-title">"We are going to be working with agents."</div>
+    <p>There is absolutely no doubt that we're going to be working with agents in the near future. Everyone in the tech industry already has multiple agents working alongside them. Within two to three years, any knowledge worker sitting in front of a computer will have to work with agents because productivity will be so much higher. The good news is Hartman is way ahead of the curve.</p>
+  </div>
+
+  <div class="wf-note" style="margin-top:16px;"><strong>Benchmark test:</strong> Before building any agent, try the same task in regular Copilot chat first. Screenshot the result. This is your "before." If the agent doesn't beat the baseline, something needs to be adjusted.</div>
 </div>
 
 <!-- SETUP WALKTHROUGH -->
 <div class="section" id="s2-setup">
   <div class="section-label"><span>02</span></div>
   <div class="section-title">Setting Up an Agent in Copilot</div>
-  <div class="section-subtitle">Step-by-step walkthrough to create your first agent.</div>
+  <div class="section-subtitle">Step-by-step walkthrough to create your first agent in <a href="https://copilotstudio.microsoft.com" target="_blank">Copilot Studio</a>.</div>
 
   <div class="step-card"><div class="step-num">1</div><h4>Open Copilot Studio</h4><p>Go to <a href="https://m365.cloud.microsoft" target="_blank" style="color:var(--accent);">m365.cloud.microsoft</a>. In the Copilot chat, click the <strong>"Create Agent"</strong> button, or go directly to <a href="https://copilotstudio.microsoft.com" target="_blank" style="color:var(--accent);">copilotstudio.microsoft.com</a>.</p></div>
   <div class="step-card"><div class="step-num">2</div><h4>Name, Logo, and Description</h4><p>Give your agent a clear name (e.g., "Hartman Email Writer" or "Podcast Repurposer") and a brief description. Upload a logo or icon. The description helps you and your team understand what the agent is for.</p></div>
@@ -367,173 +425,430 @@ Maintain the scholarly but accessible tone that Hartman is known for.</div><butt
   <div class="step-card"><div class="step-num">7</div><h4>Test and Share</h4><p>Use the test panel to try your agent. Compare output to regular Copilot. Adjust the system prompt until output is consistently good. Once working, share with your team via the agent library.</p></div>
 </div>
 
-<!-- BUILD: EMAIL AGENT -->
-<div class="section" id="s2-email">
+<!-- DONOR RESEARCH WITH EXCEL AGENT -->
+<div class="section" id="s2-data">
   <div class="section-label"><span>03</span></div>
-  <div class="section-title">Build: Email Writing Agent</div>
-  <div class="section-subtitle">An agent that writes in your voice and knows the Hartman context.</div>
+  <div class="section-title">Donor Research with the Excel Agent</div>
+  <div class="section-subtitle">Use AI to turn a raw event list into a ranked, researched prospect list.</div>
 
   <div class="callout">
-    <div class="callout-title">Step 0: Let AI learn your writing style.</div>
-    <p>Before building the agent, open Copilot Chat (Work tab) and run this prompt. The output becomes the foundation of your agent's system prompt.</p>
+    <div class="callout-title">This changes the research workflow entirely.</div>
+    <p>The Excel Agent is a prebuilt Microsoft agent embedded in Excel. Because Microsoft owns LinkedIn, the Copilot Excel agent can synthesize LinkedIn data &mdash; which is blocked to all other AI systems. Combined with web search, it turns a raw event list into a researched, ranked prospect list in minutes instead of days.</p>
   </div>
-  <div class="prompt-block" style="margin-bottom:24px;"><div class="prompt-label">Run This First (in Copilot Chat, Work tab)</div><div class="prompt-text">Go through my last 50 sent emails. Extract my tone of voice, writing style, level of formality, common phrases, greeting and sign-off patterns, and how I structure my messages. Then provide 3-4 representative examples. Finally, write a complete system prompt for an AI agent that will write emails in my exact tone of voice. The system prompt should be practical and specific enough that the agent can immediately start drafting emails that sound like me.</div><button class="copy-btn">Copy</button></div>
+  <div class="collapsible open" style="margin-top:8px;">
+    <div class="collapsible-header"><h3>Qualitative Research: Donor Enrichment</h3><div class="collapsible-arrow">&#9662;</div></div>
+    <div class="collapsible-body"><div class="collapsible-content">
+      <p class="eq-note" style="margin-bottom:20px;">Take an event registrant list and identify who has donor capacity and philanthropic propensity. The Excel agent cross-references each name with public web data and LinkedIn profiles to produce a ranked, enriched prospect list.</p>
 
-  <div class="wf-card">
-    <div class="wf-header"><div class="wf-left"><div class="wf-num"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22 6 12 13 2 6"/></svg></div><div><div class="wf-title">Hartman Email Writer</div><div class="wf-desc">Writes in your voice for donor, colleague, and partner communications</div></div></div><div class="wf-arrow">&#9662;</div></div>
-    <div class="wf-body"><div class="wf-content">
-      <p>This agent handles donor thank-you notes, colleague coordination, grant-related correspondence, and program communications. It knows Hartman's mission and writes in your personal style.</p>
-      <div class="wf-note"><strong>How to use:</strong> Take the system prompt that Copilot generated from your emails in Step 0 and paste it into the agent's Instructions field. The output from Step 0 is your system prompt. You can then refine it by adding rules like the ones below.</div>
-      <div class="prompt-block"><div class="prompt-label">Example Rules to Add to Your Generated System Prompt</div><div class="prompt-text">Additional rules for this agent:
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <h4>Open your spreadsheet with Copilot</h4>
+        <p>Download the sample prospect list (or use your own event registrant sheet). Upload it to <strong>OneDrive</strong>, open in Excel, and click the <strong>Copilot</strong> icon. Select <strong>Claude</strong> from the model dropdown for best results.</p>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <h4>Run the donor enrichment prompt</h4>
+        <p>Paste this prompt to identify individuals with demonstrated philanthropic backgrounds:</p>
+      </div>
+      <div class="prompt-block"><div class="prompt-label">Qualitative Research Prompt</div><div class="prompt-text">Help me analyze this list to identify individuals with a demonstrated public philanthropic background. For each person, use their first name, last name, and provided bio, and enrich the analysis with verified public web data.
+
+For each person, provide:
+- Evidence of verified philanthropic activity, foundation involvement, or nonprofit affiliations
+- Indicators of financial capacity (business ownership, executive roles, assets, public filings)
+- Connection to Jewish organizations or liberal Judaism affiliation
+- Rank and select the top 20 individuals most likely to have the capacity and propensity to donate
+
+Do not specify exact dollar amounts if you don't have verified data. Use ranges instead.</div><button class="copy-btn">Copy</button></div>
+
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <h4>Generate donor briefing notes</h4>
+        <p>Once you have your ranked list, generate personalized briefings for leadership meetings:</p>
+      </div>
+      <div class="prompt-block"><div class="prompt-label">Briefing Notes Prompt</div><div class="prompt-text">Generate a 1-2 paragraph brief for each top prospect summarizing all available information. Include their background, professional history, philanthropic activity, and suggest a personalized pitch angle for engaging them with our mission.</div><button class="copy-btn">Copy</button></div>
+
+      <div class="wf-note" style="margin-top:16px;"><strong>Accuracy note:</strong> Expect approximately 80% accuracy. The top 18 results are consistently reliable across multiple runs. The goal is not perfection &mdash; it's going from 200 unknown prospects to 20 well-researched candidates you can fact-check efficiently. The agent handles the heavy lift; your team handles verification.</div>
+    </div></div>
+  </div>
+
+  <div class="collapsible" style="margin-top:12px;">
+    <div class="collapsible-header"><h3>Quantitative Research: Excel Functions &amp; Dashboards</h3><div class="collapsible-arrow">&#9662;</div></div>
+    <div class="collapsible-body"><div class="collapsible-content">
+      <p class="eq-note" style="margin-bottom:20px;">Use the Excel Agent to build formulas, create dashboards, run data analysis, and generate visualizations &mdash; all in plain English. No need to know Excel functions.</p>
+
+      <div class="setup-box" style="margin-bottom:20px;">
+        <div class="setup-head"><div class="icon icon-accent"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/></svg></div><h4>How to Access Agent Mode</h4></div>
+        <p>Agent Mode requires your data to be on OneDrive. Upload your spreadsheet first, then open it in Excel.</p>
+        <div class="checklist" style="margin-top:12px;">
+          <div class="check-item"><div class="check-box">&#10003;</div><span>Upload your spreadsheet to <strong>OneDrive</strong> (Agent Mode won't work on local files)</span></div>
+          <div class="check-item"><div class="check-box">&#10003;</div><span>Open the file in Excel and click the <strong>Copilot</strong> button in the ribbon</span></div>
+          <div class="check-item"><div class="check-box">&#10003;</div><span>Click <strong>Tools</strong>, then select <strong>Agent Mode</strong></span></div>
+        </div>
+      </div>
+
+      <div class="prompt-block"><div class="prompt-label">Dashboard Creation Prompt</div><div class="prompt-text">Analyze this data. Create a new dashboard tab that includes:
+- Summary metrics with totals and averages
+- A trend chart showing changes over time
+- Top performing items ranked by key metric
+- A breakdown by category with percentage share
+Format everything professionally with headers and conditional formatting.</div><button class="copy-btn">Copy</button></div>
+
+      <div class="prompt-block"><div class="prompt-label">VLOOKUP &amp; Cross-Reference Prompt</div><div class="prompt-text">Add a VLOOKUP column that matches each row to the corresponding data from the second sheet. Then create a pivot summary sorted highest to lowest.</div><button class="copy-btn">Copy</button></div>
+
+      <div class="wf-note" style="margin-top:16px;"><strong>Key requirement:</strong> Your file must be saved on OneDrive for Agent Mode to work. If it's a local file, upload it first. Agent Mode can create new tabs, add formulas, build charts, and format data &mdash; all from natural language instructions.</div>
+    </div></div>
+  </div>
+</div>
+
+<!-- BUILD: WRITE LIKE ME AGENT -->
+<div class="section" id="s2-email">
+  <div class="section-label"><span>04</span></div>
+  <div class="section-title">Build: Write Like Me Agent</div>
+  <div class="section-subtitle">An agent that writes emails in your exact voice &mdash; not generic AI output.</div>
+
+  <div class="callout">
+    <div class="callout-title">Step 0: Benchmark first.</div>
+    <p>Before building the agent, go to plain Copilot chat and ask it to write a professional email about a topic of your choice. Screenshot the result. This is your "before" &mdash; the baseline you'll compare your agent against.</p>
+  </div>
+
+  <div class="step-card">
+    <div class="step-num">1</div>
+    <h4>Extract your writing voice</h4>
+    <p>In Copilot Chat (<strong>Work</strong> tab, <strong>DeepThink</strong> mode), run this prompt. It analyzes your sent emails and generates a system prompt that captures your personal style.</p>
+  </div>
+  <div class="prompt-block" style="margin-bottom:20px;"><div class="prompt-label">Run This in Copilot Chat (Work tab, DeepThink mode)</div><div class="prompt-text">Please analyze my last 100 sent emails and extract my writing style, tone, vocabulary patterns, sentence structure, typical greetings and sign-offs, and overall voice. Turn this analysis into a detailed system prompt I can use to configure an AI agent to write emails that sound exactly like me.</div><button class="copy-btn">Copy</button></div>
+
+  <div class="step-card">
+    <div class="step-num">2</div>
+    <h4>Create the agent</h4>
+    <p>In Copilot, click <strong>"New Agent"</strong> in the left sidebar. Toggle to <strong>"Configure"</strong> (not "Describe"). Fill in:</p>
+    <ul>
+      <li><strong>Name:</strong> "My Email Assistant" (or your own variant)</li>
+      <li><strong>Description:</strong> Brief summary of what it does</li>
+      <li><strong>Instructions:</strong> Paste the system prompt generated in Step 1</li>
+      <li><strong>Knowledge:</strong> Click "My Emails" to connect your Outlook email history</li>
+      <li><strong>Conversation starters:</strong> "Write a follow-up to..." / "Proofread this email" / "Draft a reply to [name] about [topic]"</li>
+    </ul>
+  </div>
+
+  <div class="step-card">
+    <div class="step-num">3</div>
+    <h4>Refine with additional rules</h4>
+    <p>Add these rules to the system prompt generated in Step 1 to fine-tune behavior:</p>
+  </div>
+  <div class="prompt-block" style="margin-bottom:20px;"><div class="prompt-label">Rules to Append to Your System Prompt</div><div class="prompt-text">Additional rules for this agent:
 - When I give you a topic and recipient, draft the full email ready to send
 - If I don't specify a tone, default to the style you learned from my emails
 - For donor communications, be warmer and more personal than my default
 - For internal team emails, be shorter and more action-oriented
 - Always ask me to confirm before I send anything
 - If context is missing, ask me clarifying questions before drafting
-- Keep subject lines concise and specific</div><button class="copy-btn">Copy</button></div>
+- Keep subject lines concise and specific
+- Respond in the same language as the email you are given</div><button class="copy-btn">Copy</button></div>
+
+  <div class="step-card">
+    <div class="step-num">4</div>
+    <h4>Test and iterate</h4>
+    <p>Ask the agent: "Draft a reply to Anna about the donor research." Does it sound like you? If it repeats mistakes (too formal, wrong sign-off, uses "I hope this email finds you well"), go back and add explicit corrections to the system prompt.</p>
+  </div>
+
+  <div class="collapsible" style="margin-top:20px;">
+    <div class="collapsible-header"><h3>Using the agent across Microsoft 365 apps</h3><div class="collapsible-arrow">&#9662;</div></div>
+    <div class="collapsible-body"><div class="collapsible-content">
+      <p class="eq-note">Once built, your agent is available everywhere in Microsoft 365. In any app &mdash; Outlook, Word, Excel, Teams &mdash; type <strong>@</strong> in the Copilot sidebar and select your agent by name. In Outlook, the agent sees the email thread you're looking at and can draft a reply in context. Copy-paste the draft into the email (sending from Copilot is not yet available, intentionally for safety).</p>
+      <div class="card-grid" style="margin-top:16px;">
+        <div class="card"><div class="card-head"><div class="icon icon-accent"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div class="card-title">Outlook</div></div><div class="card-desc">Draft replies in your voice with full thread context. Type @ and select your agent.</div></div>
+        <div class="card"><div class="card-head"><div class="icon icon-accent"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><div class="card-title">Word</div></div><div class="card-desc">Generate reports and proposals. "Edit with Copilot" flows agent output into your document.</div></div>
+      </div>
     </div></div>
   </div>
 </div>
 
-<!-- BUILD: CONTENT AGENT -->
-<div class="section" id="s2-content">
-  <div class="section-label"><span>04</span></div>
-  <div class="section-title">Build: Content Repurposing Agent</div>
-  <div class="section-subtitle">Turn podcast transcripts into blog posts, social media, and newsletters.</div>
-
-  <div class="callout">
-    <div class="callout-title">Step 0: Let AI learn your content style.</div>
-    <p>Same approach as the email agent. First, let Copilot analyze existing published content to extract the voice and style.</p>
-  </div>
-  <div class="prompt-block" style="margin-bottom:24px;"><div class="prompt-label">Run This First (in Copilot Chat)</div><div class="prompt-text">I'm going to paste 3-5 blog posts (or newsletter pieces) we've published. Analyze the writing style, tone, structure, typical length, how arguments are presented, and how we address our audience. Then write a complete system prompt for an AI agent that will repurpose podcast transcripts into written content that matches this exact style.</div><button class="copy-btn">Copy</button></div>
-
-  <div class="wf-card">
-    <div class="wf-header"><div class="wf-left"><div class="wf-num"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/></svg></div><div><div class="wf-title">Podcast-to-Content Agent</div><div class="wf-desc">Converts podcast episodes into multiple content formats</div></div></div><div class="wf-arrow">&#9662;</div></div>
-    <div class="wf-body"><div class="wf-content">
-      <p>Use the system prompt generated in Step 0 as the agent's instructions. Then add these practical rules to refine its output.</p>
-      <div class="wf-note"><strong>How to use:</strong> Paste the system prompt from Step 0 into the agent's Instructions field, then add rules like the ones below. Upload the Hartman website as a knowledge source so the agent can reference real program names and descriptions.</div>
-      <div class="prompt-block"><div class="prompt-label">Example Rules to Add to Your Generated System Prompt</div><div class="prompt-text">When I paste a podcast transcript, produce all of the following:
-
-1. Blog post (500-800 words) that captures the key arguments
-2. 3 social media posts (LinkedIn-style, under 200 words each), each highlighting a different insight
-3. Newsletter blurb (100 words) with a compelling hook
-4. 5 pull quotes that work as standalone social graphics
-
-Rules:
-- Match the style you learned from our published content
-- Preserve nuance. Don't oversimplify complex arguments
-- If the podcast has multiple speakers, attribute key points
-- Always ask which platform the social posts are for before finalizing
-- Suggest a headline and meta description for SEO</div><button class="copy-btn">Copy</button></div>
-    </div></div>
-  </div>
-</div>
-
-<!-- EXCEL AGENT MODE -->
-<div class="section" id="s2-excel">
+<!-- BUILD: REPORT WRITER AGENT -->
+<div class="section" id="s2-report">
   <div class="section-label"><span>05</span></div>
-  <div class="section-title">Excel Agent Mode</div>
-  <div class="section-subtitle">Turn spreadsheets into dashboards, formulas, and analysis using plain English.</div>
+  <div class="section-title">Build: Report Writer Agent</div>
+  <div class="section-subtitle">An agent that generates donor reports from raw materials using a consistent template.</div>
 
   <div class="callout">
-    <div class="callout-title">This changes everything about working with data.</div>
-    <p>Excel Agent Mode isn't just answering questions about your data. It takes actions: creates formulas, builds charts, adds new tabs, formats dashboards. You describe what you want and it builds it.</p>
+    <div class="callout-title">One agent per program, not per donor.</div>
+    <p>Build agents by program (e.g., one for each initiative). The donor name and time period are always passed as inputs at runtime. One well-configured Report Writer agent serves all donor reports for that program.</p>
   </div>
 
-  <div class="setup-box">
-    <div class="setup-head"><div class="icon icon-accent"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="3" x2="9" y2="21"/></svg></div><h4>How to Access Agent Mode</h4></div>
-    <p>Agent Mode requires your data to be on OneDrive. Upload your spreadsheet first, then open it in Excel.</p>
-    <div class="checklist">
-      <div class="check-item"><div class="check-box">&#10003;</div><span>Upload your spreadsheet to <strong>OneDrive</strong> (Agent Mode won't work on local files)</span></div>
-      <div class="check-item"><div class="check-box">&#10003;</div><span>Open the file in Excel and click the <strong>Copilot</strong> button in the ribbon</span></div>
-      <div class="check-item"><div class="check-box">&#10003;</div><span>Click <strong>Tools</strong>, then select <strong>Agent Mode</strong></span></div>
-      <div class="check-item"><div class="check-box">&#10003;</div><span>Now you can give instructions in plain English and the agent will take actions on your data</span></div>
-    </div>
+  <div class="step-card">
+    <div class="step-num">1</div>
+    <h4>Benchmark first</h4>
+    <p>Upload an existing report or raw notes to plain Copilot and ask it to write a donor report. Screenshot the result &mdash; this is your "before."</p>
   </div>
 
-  <div class="wf-card">
-    <div class="wf-header"><div class="wf-left"><div class="wf-num"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="3" x2="9" y2="21"/></svg></div><div><div class="wf-title">Podcast Data Analysis</div><div class="wf-desc">Dashboards, trends, and listener analytics from your show data</div></div></div><div class="wf-arrow">&#9662;</div></div>
-    <div class="wf-body"><div class="wf-content">
-      <p>Upload your podcast analytics spreadsheet and let Agent Mode do the heavy lifting. It can build VLOOKUPs across episodes and platforms, create trend charts, and generate a full dashboard tab automatically.</p>
-      <div class="prompt-block"><div class="prompt-label">Sample Prompt (Excel Agent Mode)</div><div class="prompt-text">Analyze this podcast data. Create a new dashboard tab that includes:
-- Total listens by episode with a trend chart
-- Top performing episodes ranked by downloads
-- Platform breakdown (Apple, Spotify, YouTube) with percentage share
-- Listener retention: average completion rate by episode length
-- Geographic breakdown of our audience by region
-Format everything professionally with headers and conditional formatting.</div><button class="copy-btn">Copy</button></div>
-      <div class="prompt-block"><div class="prompt-label">Another Example</div><div class="prompt-text">Add a VLOOKUP column that matches each episode to its social media engagement data from the second sheet. Then create a pivot summary showing average listens by topic category, sorted highest to lowest.</div><button class="copy-btn">Copy</button></div>
-      <div class="wf-note"><strong>Key requirement:</strong> Your file must be saved on OneDrive for Agent Mode to work. If it's a local file, upload it first. Agent Mode can create new tabs, add formulas, build charts, and format data, all from natural language instructions. We demoed this with a synthetic "For Heaven's Sake" podcast dataset and it built the entire dashboard in seconds.</div>
+  <div class="step-card">
+    <div class="step-num">2</div>
+    <h4>Extract your report template</h4>
+    <p>Take an existing report you want to replicate. Paste it into Copilot chat and ask AI to extract the structure:</p>
+  </div>
+  <div class="prompt-block" style="margin-bottom:20px;"><div class="prompt-label">Template Extraction Prompt</div><div class="prompt-text">Please extract the document structure, chapters, section headings, and writing style of this report. Then create a detailed system prompt for an AI agent that will generate new reports following this exact structure, tone, and formatting. The system prompt should instruct the agent to:
+- Follow the extracted section structure exactly
+- Ask for the donor name and time period before generating
+- Use active voice and focus on impact
+- Write from the organization's perspective
+- Leave sections blank rather than fabricate content when no source material is provided
+- Always ask for source materials (meeting notes, program updates, etc.) before writing</div><button class="copy-btn">Copy</button></div>
+
+  <div class="step-card">
+    <div class="step-num">3</div>
+    <h4>Create the agent</h4>
+    <p>In Copilot, click <strong>"New Agent"</strong> &rarr; <strong>"Configure"</strong>:</p>
+    <ul>
+      <li><strong>Name:</strong> "[Program Name] Report Writer"</li>
+      <li><strong>Instructions:</strong> Paste the system prompt from Step 2</li>
+      <li><strong>Knowledge:</strong> Add relevant program website URLs (3-4 pages). Do NOT pre-upload source materials &mdash; users upload those fresh each time.</li>
+      <li><strong>Conversation starters:</strong> "I need to write a donor report" / "Here are my raw materials" / "Adapt this for a different donor"</li>
+    </ul>
+  </div>
+
+  <div class="step-card">
+    <div class="step-num">4</div>
+    <h4>Use the agent</h4>
+    <p>Upload raw materials (meeting notes, WhatsApp exports, staff updates &mdash; multiple documents at once). Type: <strong>"Produce the report."</strong> The agent will ask for the donor name and time period, then generate the full structured document.</p>
+  </div>
+
+  <div class="collapsible" style="margin-top:20px;">
+    <div class="collapsible-header"><h3>Advanced: Multiple agents working together</h3><div class="collapsible-arrow">&#9662;</div></div>
+    <div class="collapsible-body"><div class="collapsible-content">
+      <p class="eq-note">Chain agents for a full production workflow:</p>
+      <div style="margin-top:12px;display:flex;flex-direction:column;gap:8px;">
+        <div class="card"><div class="card-head"><div class="icon icon-accent"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><div class="card-title">1. Report Writer generates the content</div></div><div class="card-desc">Your custom agent produces the structured report from raw materials.</div></div>
+        <div class="card"><div class="card-head"><div class="icon icon-accent"><svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></div><div class="card-title">2. "Edit with Copilot" flows it into Word</div></div><div class="card-desc">Word's built-in agent formats the content into your branded template.</div></div>
+        <div class="card"><div class="card-head"><div class="icon icon-accent"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div><div class="card-title">3. PowerPoint agent converts to a deck</div></div><div class="card-desc">Transform the final report into a presentation for donor meetings or board reviews.</div></div>
+      </div>
+    </div></div>
+  </div>
+
+  <div class="collapsible" style="margin-top:12px;">
+    <div class="collapsible-header"><h3>Share with your team</h3><div class="collapsible-arrow">&#9662;</div></div>
+    <div class="collapsible-body"><div class="collapsible-content">
+      <p class="eq-note">The Report Writer agent is shareable across the team. Click the three dots next to the agent, click <strong>Share</strong>, and select specific team members. Build one well-configured agent per program and share it, so everyone producing reports for that program uses the same trained agent.</p>
     </div></div>
   </div>
 </div>
 
-<!-- VIBE CODING WITH GEMINI -->
-<div class="section" id="s2-vibe">
+<!-- TIPS & NEXT STEPS -->
+<div class="section" id="s2-tips">
   <div class="section-label"><span>06</span></div>
-  <div class="section-title">Vibe Coding with Gemini Canvas</div>
-  <div class="section-subtitle">Turn raw data into beautiful interactive dashboards without writing a line of code.</div>
+  <div class="section-title">Tips &amp; Next Steps</div>
+  <div class="section-subtitle">Best practices for getting the most out of your agents.</div>
 
-  <div class="callout">
-    <div class="callout-title">You don't need a developer to build tools anymore.</div>
-    <p>Vibe coding means describing what you want in natural language and letting AI generate the code. With Gemini Canvas, you upload a CSV and get a fully interactive visual dashboard you can share, export to slides, or keep using as a live tool.</p>
+  <div class="card-grid">
+    <div class="card"><div class="card-head"><div class="icon icon-accent"><svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg></div><div class="card-title">Iterate the Prompt</div></div><div class="card-desc">Your system prompt will need tuning. After 5-10 test conversations, you'll see patterns in what the agent gets wrong. Update the instructions each time.</div></div>
+    <div class="card"><div class="card-head"><div class="icon icon-accent"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg></div><div class="card-title">Share with Your Team</div></div><div class="card-desc">Once your agent is working well, share it via the agent library. Click the three dots &rarr; Share &rarr; select team members. Everyone uses the same trained agent.</div></div>
+    <div class="card"><div class="card-head"><div class="icon icon-accent"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div><div class="card-title">Upload More Knowledge</div></div><div class="card-desc">The more relevant documents you give an agent, the better it performs. Add past proposals, program descriptions, website content, and brand guidelines. Maximum 4 files per agent.</div></div>
+    <div class="card"><div class="card-head"><div class="icon icon-accent"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><div class="card-title">Start Simple</div></div><div class="card-desc">Don't try to build an agent that does everything. Start with one specific task and get it working perfectly before expanding scope. Build per program, not per donor.</div></div>
   </div>
 
-  <div class="setup-box">
-    <div class="setup-head"><div class="icon icon-accent"><svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div><h4>How to Use Gemini Canvas</h4></div>
-    <p>Gemini Canvas is Google's tool for creating interactive visual outputs from your prompts. Free to use at <a href="https://gemini.google.com" target="_blank" style="color:var(--accent);">gemini.google.com</a>.</p>
-    <div class="checklist">
-      <div class="check-item"><div class="check-box">&#10003;</div><span>Go to <a href="https://gemini.google.com" target="_blank" style="color:var(--accent);"><strong>gemini.google.com</strong></a> and sign in with any Google account</span></div>
+  <div class="callout" style="margin-top:28px;">
+    <div class="callout-title">"Even 80% is a lot of work done by the agent."</div>
+    <p>You can't get frustrated if it hallucinates or gives you an inaccurate answer. You need to help it. Inject more context. That's how you work with AI. You're fact-checking instead of researching from scratch.</p>
+  </div>
+
+  <div class="voice-tip" style="margin-top:20px;"><p><strong>What's next:</strong> Start with one agent this week. Pick the task you spend the most time on and build an agent for it. Test it for a few days, refine the instructions, and then share it with your team. The goal is to have 3-4 specialized agents covering your most repetitive work within a month.</p></div>
+</div>
+
+</div><!-- end container for session 2 -->
+</div><!-- end session2 -->
+
+<!-- ============================================================ -->
+<!-- SESSION 3: GEO & VIBE CODING -->
+<!-- ============================================================ -->
+<div class="session-content" id="session3">
+
+<div class="sticky-nav" id="stickyNav3">
+  <div class="nav-inner">
+    <div class="nav-tab active" data-section="s3-geo">GEO for Fundraising</div>
+    <div class="nav-tab" data-section="s3-vibe">Vibe Coding</div>
+    <div class="nav-tab" data-section="s3-browsers">AI Browsers</div>
+  </div>
+</div>
+<div class="progress-wrap"><div class="progress-row"><span>Your progress</span><span class="pct">0%</span></div><div class="progress-track"><div class="progress-fill"></div></div></div>
+
+<div class="container">
+
+<!-- GEO FOR FUNDRAISING -->
+<div class="section" id="s3-geo">
+  <div class="section-label"><span>01</span></div>
+  <div class="section-title">GEO for Fundraising</div>
+  <div class="section-subtitle">Generative Engine Optimization: make sure AI talks about you.</div>
+
+  <div class="callout">
+    <div class="callout-title">"When a donor asks ChatGPT about Jewish pluralism, are you in the answer?"</div>
+    <p>GEO is the next stage after SEO. While SEO was about ranking on Google's page 1, GEO is about influencing what AI systems say about you when users ask. 60% of searches are now zero-click &mdash; the answer is consumed without ever visiting your site.</p>
+  </div>
+
+  <div class="collapsible open">
+    <div class="collapsible-header"><h3>SEO vs. GEO</h3><div class="collapsible-arrow">&#9662;</div></div>
+    <div class="collapsible-body"><div class="collapsible-content">
+      <div class="card-grid" style="margin-top:16px;">
+        <div class="card">
+          <div class="card-title">SEO (Old)</div>
+          <div class="card-desc">
+            <ul style="padding-left:16px;margin:0;">
+              <li>Optimize for Google's algorithm</li>
+              <li>Goal: rank on page 1</li>
+              <li>Users click through to your site</li>
+              <li>Keywords + backlinks</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card" style="border-color:var(--accent);">
+          <div class="card-title" style="color:var(--accent);">GEO (New)</div>
+          <div class="card-desc">
+            <ul style="padding-left:16px;margin:0;">
+              <li>Optimize for AI's answer</li>
+              <li>Goal: get cited in the response</li>
+              <li>Users read the AI summary and move on</li>
+              <li>Authority + structure + citations</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div></div>
+  </div>
+
+  <div class="collapsible" style="margin-top:12px;">
+    <div class="collapsible-header"><h3>Why this matters now</h3><div class="collapsible-arrow">&#9662;</div></div>
+    <div class="collapsible-body"><div class="collapsible-content">
+      <div style="margin-top:16px;display:flex;flex-direction:column;gap:10px;">
+        <div class="card"><div class="card-title">60% zero-click searches</div><div class="card-desc">The answer is consumed in the search interface. Users never visit your website.</div></div>
+        <div class="card"><div class="card-title">28% of Gen Z start in a chatbot</div><div class="card-desc">Not a search engine. Under-40 users: approximately 80% of search has moved to AI platforms.</div></div>
+        <div class="card"><div class="card-title">23x conversion rate</div><div class="card-desc">AI traffic converts at 23x the rate of regular web traffic. Users who click through are already deeply informed and engaged.</div></div>
+      </div>
+
+      <div class="wf-note" style="margin-top:16px;"><strong>Where AI looks for answers (source leaderboard):</strong> Reddit (40%), Wikipedia (26%), YouTube (27%), Google (23%), Facebook (20%). Brand websites are NOT on this list. AI trusts third-party sources more than your own site.</div>
+    </div></div>
+  </div>
+
+  <div class="collapsible" style="margin-top:12px;">
+    <div class="collapsible-header"><h3>The 4 strategies to stay ahead</h3><div class="collapsible-arrow">&#9662;</div></div>
+    <div class="collapsible-body"><div class="collapsible-content">
+      <div style="margin-top:16px;display:flex;flex-direction:column;gap:10px;">
+        <div class="step-card">
+          <div class="step-num">1</div>
+          <h4>Answer First</h4>
+          <p>Put a 50-word direct answer at the top of every blog post. AI scrapes the opening paragraph first. Don't bury the lede.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">2</div>
+          <h4>Be Where AI Looks</h4>
+          <p>Post on YouTube, Reddit, LinkedIn. Publish in third-party publications. AI prioritizes these sources over brand websites.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">3</div>
+          <h4>Authority Signals</h4>
+          <p>Include author bios, expert quotes, statistics, and citations in all content. AI prioritizes credibility markers.</p>
+        </div>
+        <div class="step-card">
+          <div class="step-num">4</div>
+          <h4>Structure for Extraction</h4>
+          <p>Clear headers, FAQ format, short paragraphs. Make content easy for AI to parse and lift into answers.</p>
+        </div>
+      </div>
+    </div></div>
+  </div>
+
+  <div class="callout" style="margin-top:24px;">
+    <div class="callout-title">Your homework</div>
+    <p>Put yourself in the shoes of donors. Ask the questions you think donors are asking about your organization before they engage and donate. Then go ask those questions in ChatGPT, Claude, and Perplexity. What do you see in the answers? Are you mentioned?</p>
+  </div>
+</div>
+
+<!-- VIBE CODING -->
+<div class="section" id="s3-vibe">
+  <div class="section-label"><span>02</span></div>
+  <div class="section-title">Vibe Coding</div>
+  <div class="section-subtitle">Build software and interactive tools using natural language &mdash; no coding required.</div>
+
+  <div class="callout">
+    <div class="callout-title">"The peak of human technology is activated by natural language."</div>
+    <p>Vibe coding means describing what you want in plain language and letting AI generate the code. The technical substrate is still code, but the user never writes it. We're going to be able to use basic simple language to build software and applications.</p>
+  </div>
+
+  <div class="collapsible open">
+    <div class="collapsible-header"><h3>Agent vs. Vibe Coding</h3><div class="collapsible-arrow">&#9662;</div></div>
+    <div class="collapsible-body"><div class="collapsible-content">
+      <div class="card-grid" style="margin-top:16px;">
+        <div class="card"><div class="card-head"><div class="icon icon-accent"><svg viewBox="0 0 24 24"><path d="M12 2a4 4 0 0 0-4 4v2H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V10a2 2 0 0 0-2-2h-2V6a4 4 0 0 0-4-4z"/><circle cx="12" cy="15" r="1"/></svg></div><div class="card-title">Agent</div></div><div class="card-desc">Completes tasks for you. "Book my trip." "Write a donor report." "Research these 200 people."</div></div>
+        <div class="card"><div class="card-head"><div class="icon icon-accent"><svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div><div class="card-title">Vibe Coding</div></div><div class="card-desc">Creates a user interface, application, or platform. "Build a website that shows our program impact." You will eventually vibe code agents.</div></div>
+      </div>
+    </div></div>
+  </div>
+
+  <div class="setup-box" style="margin-top:24px;">
+    <div class="setup-head"><div class="icon icon-accent"><svg viewBox="0 0 24 24"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg></div><h4>How to Use Gemini Canvas</h4></div>
+    <p>Gemini Canvas is Google's free tool for creating interactive visual outputs. Go to <a href="https://gemini.google.com" target="_blank">gemini.google.com</a>.</p>
+    <div class="checklist" style="margin-top:12px;">
+      <div class="check-item"><div class="check-box">&#10003;</div><span>Go to <a href="https://gemini.google.com" target="_blank">gemini.google.com</a> and sign in with any Google account</span></div>
       <div class="check-item"><div class="check-box">&#10003;</div><span>Upload a CSV file or paste data into the chat</span></div>
       <div class="check-item"><div class="check-box">&#10003;</div><span>Ask Gemini to <strong>"create an interactive dashboard"</strong> from the data</span></div>
       <div class="check-item"><div class="check-box">&#10003;</div><span>Gemini opens a <strong>Canvas</strong> panel with a live, interactive visualization you can modify</span></div>
     </div>
   </div>
 
-  <div class="wf-card">
-    <div class="wf-header"><div class="wf-left"><div class="wf-num"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div><div><div class="wf-title">CSV to Interactive Dashboard</div><div class="wf-desc">Upload data, get a visual tool you can share or export</div></div></div><div class="wf-arrow">&#9662;</div></div>
-    <div class="wf-body"><div class="wf-content">
-      <p>This is what we demonstrated live in the workshop. Upload any CSV (podcast analytics, program metrics, survey responses) and Gemini builds an interactive UI with charts, filters, and summaries.</p>
-      <div class="prompt-block"><div class="prompt-label">Sample Prompt</div><div class="prompt-text">I'm uploading a CSV of our podcast analytics for "For Heaven's Sake." Create a beautiful interactive dashboard with:
-- A summary card row showing total episodes, total listens, and average retention rate
-- A bar chart of listens by platform (Apple, Spotify, YouTube, Web)
-- A line chart showing episode-over-episode download trends
-- A filterable table of all episodes sorted by total listens
+  <div class="prompt-block" style="margin-top:20px;"><div class="prompt-label">Sample Vibe Coding Prompt</div><div class="prompt-text">I'm uploading a CSV of our program data. Create a beautiful interactive dashboard with:
+- A summary card row showing key metrics
+- A bar chart breaking down data by category
+- A line chart showing trends over time
+- A filterable table of all records sorted by impact
 - Use a clean, professional design with a navy and gold color scheme
 
-Make it interactive so I can click on a platform to filter the table below it.</div><button class="copy-btn">Copy</button></div>
-      <div class="prompt-block"><div class="prompt-label">Reuse Your Design</div><div class="prompt-text">Use the exact same design language and layout from the last dashboard you built, but apply it to this new dataset. Keep the same color scheme, card style, and chart formats.</div><button class="copy-btn">Copy</button></div>
-      <div class="wf-note"><strong>Key advantage:</strong> Once you define a design language you like, you can reuse it across new datasets. Just reference the previous dashboard and upload new data. You can also export the result to Google Slides or share the interactive version directly with your team.</div>
-    </div></div>
+Make it interactive so I can click on a category to filter the table below it.</div><button class="copy-btn">Copy</button></div>
+
+  <div class="prompt-block"><div class="prompt-label">Reuse Your Design</div><div class="prompt-text">Use the exact same design language and layout from the last dashboard you built, but apply it to this new dataset. Keep the same color scheme, card style, and chart formats.</div><button class="copy-btn">Copy</button></div>
+
+  <div class="callout" style="margin-top:24px;">
+    <div class="callout-title">"No one's going to want 10-page PDFs."</div>
+    <p>They're going to want to understand impact in a visually friendly, accessible way. In one to two years, interactive visual reports will be the standard for donor communications.</p>
   </div>
 
   <div class="card-grid" style="margin-top:24px;">
-    <div class="card"><div class="card-head"><div class="icon icon-accent"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div><div class="card-title">Interactive Dashboards</div></div><div class="card-desc">Upload a CSV and get a clickable, filterable dashboard in seconds. No developer needed. Iterate on the design by describing what to change.</div></div>
-    <div class="card"><div class="card-head"><div class="icon icon-accent"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><div class="card-title">Export to Slides</div></div><div class="card-desc">Take your dashboard and export it directly into a presentation. Perfect for board meetings, donor reports, or program reviews.</div></div>
-    <div class="card"><div class="card-head"><div class="icon icon-accent"><svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg></div><div class="card-title">Reusable Templates</div></div><div class="card-desc">Define your design language once. Apply the same look and feel to every new dataset. Consistent branding without starting over each time.</div></div>
-    <div class="card"><div class="card-head"><div class="icon icon-accent"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg></div><div class="card-title">No Code Required</div></div><div class="card-desc">This is vibe coding: you describe what you want, AI generates the code. You don't need to learn programming. If something looks wrong, just tell it what to fix.</div></div>
+    <div class="card"><div class="card-head"><div class="icon icon-accent"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div><div class="card-title">Interactive Dashboards</div></div><div class="card-desc">Upload a CSV and get a clickable, filterable dashboard in seconds. Iterate by describing what to change.</div></div>
+    <div class="card"><div class="card-head"><div class="icon icon-accent"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><div class="card-title">Export to Slides</div></div><div class="card-desc">Export dashboards directly into presentations for board meetings, donor reports, or program reviews.</div></div>
+    <div class="card"><div class="card-head"><div class="icon icon-accent"><svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg></div><div class="card-title">Reusable Templates</div></div><div class="card-desc">Define your design language once. Apply the same look and feel to every new dataset.</div></div>
+    <div class="card"><div class="card-head"><div class="icon icon-accent"><svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div><div class="card-title">No Code Required</div></div><div class="card-desc">Describe what you want, AI generates the code. If something looks wrong, just tell it what to fix.</div></div>
   </div>
 </div>
 
-<!-- TIPS & NEXT STEPS -->
-<div class="section" id="s2-tips">
-  <div class="section-label"><span>07</span></div>
-  <div class="section-title">Tips &amp; Next Steps</div>
-  <div class="section-subtitle">Best practices for getting the most out of your agents.</div>
+<!-- AI BROWSERS -->
+<div class="section" id="s3-browsers">
+  <div class="section-label"><span>03</span></div>
+  <div class="section-title">AI Browsers</div>
+  <div class="section-subtitle">AI tools that browse the web and take actions on your behalf.</div>
 
-  <div class="card-grid">
-    <div class="card"><div class="card-head"><div class="icon icon-accent"><svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg></div><div class="card-title">Iterate the Prompt</div></div><div class="card-desc">Your system prompt will need tuning. After 5-10 test conversations, you'll see patterns in what the agent gets wrong. Update the instructions each time.</div></div>
-    <div class="card"><div class="card-head"><div class="icon icon-accent"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg></div><div class="card-title">Share with Your Team</div></div><div class="card-desc">Once your agent is working well, share it via the agent library. The marketing team, development team, and research team can each use the same agents without setup.</div></div>
-    <div class="card"><div class="card-head"><div class="icon icon-accent"><svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div><div class="card-title">Upload More Knowledge</div></div><div class="card-desc">The more relevant documents you give an agent, the better it performs. Add past proposals, program descriptions, Hartman's website content, and brand guidelines.</div></div>
-    <div class="card"><div class="card-head"><div class="icon icon-accent"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><div class="card-title">Start Simple</div></div><div class="card-desc">Don't try to build an agent that does everything. Start with one specific task (like email writing or podcast repurposing) and get it working perfectly before expanding scope.</div></div>
+  <div class="tool-grid">
+    <div class="tool-card">
+      <div class="tool-head"><div class="icon icon-accent"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div></div>
+      <div class="tool-name">Operator</div>
+      <div class="tool-tag">OpenAI &middot; Donor Research</div>
+      <div class="tool-desc">ChatGPT's browser agent. Researches donors, enriches prospect lists, and pulls data automatically by browsing the web on your behalf.</div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-head"><div class="icon icon-accent"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div></div>
+      <div class="tool-name">Claude Computer Use</div>
+      <div class="tool-tag">Anthropic &middot; Prospect Enrichment</div>
+      <div class="tool-desc">AI that controls your browser. Can automate data entry, fill forms, and navigate web tools without you clicking.</div>
+    </div>
   </div>
-
-  <div class="voice-tip" style="margin-top:32px;"><p><strong>What's next:</strong> Start with one agent this week. Pick the task you spend the most time on and build an agent for it. Test it for a few days, refine the instructions, and then share it with your team. The goal is to have 3-4 specialized agents covering your most repetitive work within a month.</p></div>
+  <div class="tool-grid" style="margin-top:12px;">
+    <div class="tool-card" style="grid-column: 1 / -1;">
+      <div class="tool-head"><div class="icon icon-accent"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div></div>
+      <div class="tool-name">Perplexity</div>
+      <div class="tool-tag">Deep Research</div>
+      <div class="tool-desc">AI-powered research engine with cited answers. Get sourced answers on donors, foundations, and grant opportunities instantly. Use for deep research where you need verified, cited sources.</div>
+    </div>
+  </div>
 </div>
 
-</div><!-- end container for session 2 -->
-</div><!-- end session2 -->
+</div><!-- end container for session 3 -->
+</div><!-- end session3 -->
 
 <!-- ============================================================ -->
 <!-- SESSION 3: COMING SOON -->
