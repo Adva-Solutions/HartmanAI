@@ -83,6 +83,8 @@
 
 /* BONUS SECTION */
 .tool-category{display:inline-block;font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;padding:3px 10px;border-radius:10px;background:rgba(123,94,167,.12);color:#7b5ea7;margin-bottom:8px}
+.tool-card .tool-name-row{display:flex;align-items:center;gap:10px;margin-bottom:4px}
+.tool-card .tool-logo{width:28px;height:28px;border-radius:6px;object-fit:contain;flex-shrink:0}
 .tool-card .try-link{display:inline-block;margin-top:12px;font-size:13px;font-weight:600;color:var(--session-accent,#7b5ea7);text-decoration:none;transition:color .15s}
 .tool-card .try-link:hover{text-decoration:underline}
 
@@ -815,56 +817,68 @@ Do not specify exact dollar amounts if you don't have verified data. Use ranges 
 
 <div class="section">
   <div class="section-title">AI Can Create <em style="font-family:var(--font-display);color:var(--session-accent);">Anything</em></div>
-  <div class="section-subtitle">Eight tools that turn text prompts into music, video, images, voices, and more.</div>
+  <div class="section-subtitle">Ten tools that turn text prompts into music, video, images, voices, designs, and more.</div>
 
   <div class="tool-grid">
     <div class="tool-card">
       <div class="tool-category">Music</div>
-      <div class="tool-name">Suno</div>
+      <div class="tool-name-row"><img class="tool-logo" src="https://www.google.com/s2/favicons?domain=suno.com&sz=64" alt="Suno"><div class="tool-name">Suno</div></div>
       <div class="tool-desc">Type a sentence, get a full song &mdash; vocals, instruments, and all. Try: <em>"a folk song about Monday morning staff meetings."</em></div>
       <a class="try-link" href="https://suno.com" target="_blank">Try it free &rarr;</a>
     </div>
     <div class="tool-card">
       <div class="tool-category">Video</div>
-      <div class="tool-name">Runway</div>
+      <div class="tool-name-row"><img class="tool-logo" src="https://www.google.com/s2/favicons?domain=runwayml.com&sz=64" alt="Runway"><div class="tool-name">Runway</div></div>
       <div class="tool-desc">Generate cinematic video clips from a text description or a single image. Hollywood-quality, zero filming required.</div>
       <a class="try-link" href="https://runwayml.com" target="_blank">Try it free &rarr;</a>
     </div>
     <div class="tool-card">
       <div class="tool-category">Voice</div>
-      <div class="tool-name">ElevenLabs</div>
+      <div class="tool-name-row"><img class="tool-logo" src="https://www.google.com/s2/favicons?domain=elevenlabs.io&sz=64" alt="ElevenLabs"><div class="tool-name">ElevenLabs</div></div>
       <div class="tool-desc">Clone any voice or generate ultra-realistic speech in 30+ languages. Perfect for narrating videos, audio guides, or event intros.</div>
       <a class="try-link" href="https://elevenlabs.io" target="_blank">Try it free &rarr;</a>
     </div>
     <div class="tool-card">
       <div class="tool-category">Images</div>
-      <div class="tool-name">Midjourney</div>
+      <div class="tool-name-row"><img class="tool-logo" src="https://www.google.com/s2/favicons?domain=midjourney.com&sz=64" alt="Midjourney"><div class="tool-name">Midjourney</div></div>
       <div class="tool-desc">The gold standard for AI-generated images. Create stunning visuals for campaigns, social posts, or event materials from a text prompt.</div>
       <a class="try-link" href="https://www.midjourney.com" target="_blank">Try it &rarr;</a>
     </div>
     <div class="tool-card">
-      <div class="tool-category">Video</div>
-      <div class="tool-name">Sora</div>
-      <div class="tool-desc">OpenAI's text-to-video model. Describe a scene &mdash; a sunset over Jerusalem, a bustling gala &mdash; and watch it come to life.</div>
-      <a class="try-link" href="https://openai.com/sora" target="_blank">Try it &rarr;</a>
+      <div class="tool-category">Avatars</div>
+      <div class="tool-name-row"><img class="tool-logo" src="https://www.google.com/s2/favicons?domain=heygen.com&sz=64" alt="HeyGen"><div class="tool-name">HeyGen</div></div>
+      <div class="tool-desc">Create a talking AI avatar of yourself from a 15-second clip. Translate any video into 175+ languages with perfect lip sync.</div>
+      <a class="try-link" href="https://www.heygen.com" target="_blank">Try it free &rarr;</a>
+    </div>
+    <div class="tool-card">
+      <div class="tool-category">Design</div>
+      <div class="tool-name-row"><img class="tool-logo" src="https://www.google.com/s2/favicons?domain=canva.com&sz=64" alt="Canva AI"><div class="tool-name">Canva AI</div></div>
+      <div class="tool-desc">Magic Studio turns a one-line prompt into social posts, flyers, and event banners. Resize, restyle, and animate &mdash; all in one click.</div>
+      <a class="try-link" href="https://www.canva.com" target="_blank">Try it free &rarr;</a>
     </div>
     <div class="tool-card">
       <div class="tool-category">Research</div>
-      <div class="tool-name">Perplexity</div>
+      <div class="tool-name-row"><img class="tool-logo" src="https://www.google.com/s2/favicons?domain=perplexity.ai&sz=64" alt="Perplexity"><div class="tool-name">Perplexity</div></div>
       <div class="tool-desc">An AI-powered search engine that reads the web for you and delivers sourced, cited answers. Like having a research assistant on speed dial.</div>
       <a class="try-link" href="https://www.perplexity.ai" target="_blank">Try it free &rarr;</a>
     </div>
     <div class="tool-card">
       <div class="tool-category">Presentations</div>
-      <div class="tool-name">Gamma</div>
+      <div class="tool-name-row"><img class="tool-logo" src="https://www.google.com/s2/favicons?domain=gamma.app&sz=64" alt="Gamma"><div class="tool-name">Gamma</div></div>
       <div class="tool-desc">Describe your presentation and get a polished, designed slide deck in seconds. No more wrestling with PowerPoint layouts.</div>
       <a class="try-link" href="https://gamma.app" target="_blank">Try it free &rarr;</a>
     </div>
     <div class="tool-card">
-      <div class="tool-category">Interactive</div>
-      <div class="tool-name">ChatGPT Canvas</div>
-      <div class="tool-desc">An interactive workspace inside ChatGPT where you co-edit documents, code, and visual outputs side-by-side with AI in real time.</div>
-      <a class="try-link" href="https://chatgpt.com" target="_blank">Try it free &rarr;</a>
+      <div class="tool-category">Logos &amp; Text</div>
+      <div class="tool-name-row"><img class="tool-logo" src="https://www.google.com/s2/favicons?domain=ideogram.ai&sz=64" alt="Ideogram"><div class="tool-name">Ideogram</div></div>
+      <div class="tool-desc">The only image generator that can actually spell. Create logos, posters, and graphics with perfectly rendered text &mdash; every time.</div>
+      <a class="try-link" href="https://ideogram.ai" target="_blank">Try it free &rarr;</a>
+    </div>
+    <div class="tool-card">
+      <div class="tool-category">Writing</div>
+      <div class="tool-name-row"><img class="tool-logo" src="https://www.google.com/s2/favicons?domain=claude.ai&sz=64" alt="Claude"><div class="tool-name">Claude</div></div>
+      <div class="tool-desc">The AI behind this course. Excels at long-form writing, deep analysis, and nuanced thinking. Try uploading a 100-page PDF and asking questions about it.</div>
+      <a class="try-link" href="https://claude.ai" target="_blank">Try it free &rarr;</a>
     </div>
   </div>
 </div>
