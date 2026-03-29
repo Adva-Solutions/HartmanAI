@@ -945,6 +945,11 @@ Make it interactive so I can click on a category to filter the table below it.</
   </div>
 </div>
 
+<!-- TOC MOBILE -->
+<button class="toc-fab" id="tocFab"><span id="tocFabLabel">01 Sections</span></button>
+<div class="toc-backdrop" id="tocBackdrop"></div>
+<div class="toc-drawer" id="tocDrawer"><div class="toc-drawer-handle"></div><ul id="tocDrawerList"></ul></div>
+
 <button class="scroll-top" id="scrollTop" aria-label="Scroll to top">&#8593;</button>
 
 <script>
@@ -958,6 +963,7 @@ Make it interactive so I can click on a category to filter the table below it.</
       this.classList.add('active');
       document.querySelectorAll('.session-content').forEach(function(c){ c.classList.remove('active'); });
       document.getElementById(target).classList.add('active');
+      buildTOC(target);
       window.scrollTo({top: 0, behavior: 'smooth'});
     });
   });
@@ -1031,6 +1037,7 @@ Make it interactive so I can click on a category to filter the table below it.</
         var sec = t.getAttribute('data-section');
         t.classList.toggle('active', sec === current);
       });
+      updateTOCActive(current);
     });
 
     updateProgress();
