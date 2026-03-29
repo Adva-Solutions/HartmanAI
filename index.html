@@ -154,9 +154,9 @@
 .callout-banner .callout-title{color:var(--accent);font-style:normal;font-weight:600}
 .callout-banner p{color:rgba(255,255,255,.7)}
 
-/* ALTERNATING SECTION BACKGROUNDS (overridden by lesson module style) */
+/* ALTERNATING SECTION BACKGROUNDS — no longer used (lesson module cards) */
 
-/* GRADIENT SECTION DIVIDERS */
+/* GRADIENT SECTION DIVIDERS — hidden by card borders */
 .section+.section{border-top:none;position:relative}
 .section+.section::before{content:'';display:block;height:2px;background:linear-gradient(90deg,transparent,var(--border),var(--session-accent,var(--accent)),var(--border),transparent);margin-bottom:0}
 
@@ -339,7 +339,7 @@ if(sessionStorage.getItem('hartmanAuth')==='1'){
   </div>
   <div class="card-grid" style="margin-bottom:12px;">
     <div class="card"><div class="card-head"><div class="icon icon-accent"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div><div class="card-title">Work vs. Web</div></div><div class="card-desc">The most important toggle. <strong>Work</strong> searches your internal data: emails, calendar, OneDrive/SharePoint files. <strong>Web</strong> searches the public internet. Use Work for internal tasks, Web for external research like foundation prospects or policy trends.</div></div>
-    <div class="card"><div class="card-head"><div class="icon icon-accent"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></div><div class="card-title">Mode Selection</div></div><div class="card-desc"><strong>Auto</strong>: default, uses multiple models. <strong>Quick Response</strong>: for simple tasks like proofreading. <strong>Think</strong>: for complex analysis like grant proposal review. You can also select <strong>OpenAI direct</strong> under "More" for ChatGPT-quality responses.</div></div>
+    <div class="card"><div class="card-head"><div class="icon icon-accent"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></div><div class="card-title">Mode Selection</div></div><div class="card-desc"><strong>Auto</strong>: default, uses multiple models. <strong>Quick Response</strong>: for simple tasks like proofreading. <strong>Think</strong>: for complex analysis like grant proposal review. You can also select <strong>OpenAI direct</strong> under "More" for an alternative model.</div></div>
   </div>
   <div class="card-grid">
     <div class="card"><div class="card-head"><div class="icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div><div class="card-title"><a href="https://support.microsoft.com/en-us/topic/get-started-with-search-in-the-microsoft-365-copilot-app-acc4d31f-496e-4f9d-ade0-67bae32d14ba" target="_blank" style="color:inherit;text-decoration:none;border-bottom:1px dashed var(--border);">Search Your Files</a></div></div><div class="card-desc">Select <strong>Search</strong> from the Copilot navigation pane. Use natural language to find files across your entire organization: "Find the grant report we submitted to Covenant last quarter" or "Show me Shraga's curriculum outline." Search works across emails, files, chats, meetings, and more.</div></div>
@@ -640,9 +640,9 @@ Do not specify exact dollar amounts if you don't have verified data. Use ranges 
       <div class="step-card">
         <div class="step-num">1</div>
         <h4>Extract your writing voice</h4>
-        <p>In Copilot Chat (<strong>Work</strong> tab, <strong>DeepThink</strong> mode), run this prompt. It analyzes your sent emails and generates a system prompt that captures your personal style.</p>
+        <p>In Copilot Chat (<strong>Work</strong> tab, <strong>Think</strong> mode), run this prompt. It analyzes your sent emails and generates a system prompt that captures your personal style.</p>
       </div>
-      <div class="prompt-block" style="margin-bottom:20px;"><div class="prompt-label">Run This in Copilot Chat (Work tab, DeepThink mode)</div><div class="prompt-text">Please analyze my last 100 sent emails and extract my writing style, tone, vocabulary patterns, sentence structure, typical greetings and sign-offs, and overall voice. Turn this analysis into a detailed system prompt I can use to configure an AI agent to write emails that sound exactly like me.</div><button class="copy-btn">Copy</button></div>
+      <div class="prompt-block" style="margin-bottom:20px;"><div class="prompt-label">Run This in Copilot Chat (Work tab, Think mode)</div><div class="prompt-text">Please analyze my last 100 sent emails and extract my writing style, tone, vocabulary patterns, sentence structure, typical greetings and sign-offs, and overall voice. Turn this analysis into a detailed system prompt I can use to configure an AI agent to write emails that sound exactly like me.</div><button class="copy-btn">Copy</button></div>
 
       <div class="step-card">
         <div class="step-num">2</div>
@@ -763,11 +763,8 @@ Do not specify exact dollar amounts if you don't have verified data. Use ranges 
   <div class="voice-tip" style="margin-top:20px;"><p><strong>Iteration is everything.</strong> Your first agent won't be perfect. After 5-10 test conversations you'll see patterns in what it gets wrong. Update the system prompt each time. The difference between a mediocre agent and a great one is usually 3-4 rounds of refinement.</p></div>
 </div>
 
-</div><!-- end container for session 3 -->
-</div><!-- end session3 -->
-
-<!-- ============================================================ -->
-<!-- SESSION 3: GEO & VIBE CODING -->
+</div><!-- end container for session 2 -->
+</div><!-- end session2 -->
 <!-- ============================================================ -->
 <div class="session-content" id="session3">
 
@@ -878,7 +875,7 @@ Do not specify exact dollar amounts if you don't have verified data. Use ranges 
 
   <div class="callout">
     <div class="callout-title">"The peak of human technology is activated by natural language."</div>
-    <p>Vibe coding means describing what you want in plain language and letting AI generate the code. The technical substrate is still code, but the user never writes it. We're going to be able to use basic simple language to build software and applications.</p>
+    <p>Vibe coding means describing what you want in plain language and letting AI generate the code. The technical substrate is still code, but the user never writes it. We're going to be able to use simple language to build software and applications.</p>
   </div>
 
   <div class="collapsible">
