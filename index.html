@@ -81,6 +81,11 @@
 .tool-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.tool-card{border:1px solid var(--border);border-radius:8px;padding:28px 24px;transition:border-color .15s}.tool-card:hover{border-color:var(--accent)}.tool-name{font-size:18px;font-weight:600;color:var(--text);margin-bottom:4px}.tool-tag{font-size:13px;color:var(--accent);font-weight:500;margin-bottom:10px}.tool-desc{font-size:15px;color:var(--text-secondary);line-height:1.6}
 .tool-head{display:flex;align-items:center;gap:10px;margin-bottom:10px}
 
+/* BONUS SECTION */
+.tool-category{display:inline-block;font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;padding:3px 10px;border-radius:10px;background:rgba(123,94,167,.12);color:#7b5ea7;margin-bottom:8px}
+.tool-card .try-link{display:inline-block;margin-top:12px;font-size:13px;font-weight:600;color:var(--session-accent,#7b5ea7);text-decoration:none;transition:color .15s}
+.tool-card .try-link:hover{text-decoration:underline}
+
 /* VOICE TIP */
 .voice-tip{margin-top:20px;padding:22px 24px;background:var(--bg-warm);border-radius:8px;border:1px solid var(--border-light)}.voice-tip p{font-size:15px;color:var(--text-secondary);line-height:1.7}.voice-tip strong{color:var(--text)}
 
@@ -121,6 +126,7 @@
 .session-content{--session-accent:var(--accent)}
 #session2{--session-accent:#3a7a8c}
 #session3{--session-accent:#a05a5a}
+#session-bonus{--session-accent:#7b5ea7}
 .progress-fill{background:var(--session-accent,var(--accent))}
 .step-num{background:var(--session-accent,var(--accent))}
 
@@ -240,6 +246,7 @@ if(sessionStorage.getItem('hartmanAuth')==='1'){
     <div class="session-tab active" data-session="session1">Session 1: AI Foundations</div>
     <div class="session-tab" data-session="session2">Session 2: Building Agents</div>
     <div class="session-tab" data-session="session3">Session 3: Coming Soon</div>
+    <div class="session-tab" data-session="session-bonus">Bonus: The Wow Factor</div>
   </div>
 </div>
 
@@ -782,6 +789,88 @@ Do not specify exact dollar amounts if you don't have verified data. Use ranges 
 </div>
 
 </div><!-- end session3 -->
+
+<!-- ============================================================ -->
+<!-- BONUS: AI WOW TOOLS -->
+<!-- ============================================================ -->
+<div class="session-content" id="session-bonus">
+
+<div class="container" style="padding-top:48px;padding-bottom:80px;">
+
+<div class="section" style="text-align:center;padding:48px 32px;">
+  <div style="font-size:48px;margin-bottom:16px;">&#10024;</div>
+  <div class="section-title" style="font-size:32px;margin-bottom:8px;">The AI Playground</div>
+  <p style="font-size:17px;color:var(--text-secondary);max-width:520px;margin:0 auto;line-height:1.7;">
+    These aren't work tools. They're <em style="font-family:var(--font-display);color:var(--session-accent);">wow</em> tools.<br>
+    No homework, no frameworks &mdash; just things that will make you say <em style="font-family:var(--font-display);color:var(--session-accent);">"wait, AI can do that?"</em>
+  </p>
+</div>
+
+<div class="section" style="padding:0;border:none;box-shadow:none;background:transparent;">
+  <div class="callout-banner" style="margin:0;border-left-color:#7b5ea7;border-radius:8px;">
+    <div class="callout-title" style="color:#7b5ea7;">Gallery Rules</div>
+    <p>Explore at your own pace. Click any tool to try it live. Most are free or have free tiers. Share anything cool you make in Slack.</p>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">AI Can Create <em style="font-family:var(--font-display);color:var(--session-accent);">Anything</em></div>
+  <div class="section-subtitle">Eight tools that turn text prompts into music, video, images, voices, and more.</div>
+
+  <div class="tool-grid">
+    <div class="tool-card">
+      <div class="tool-category">Music</div>
+      <div class="tool-name">Suno</div>
+      <div class="tool-desc">Type a sentence, get a full song &mdash; vocals, instruments, and all. Try: <em>"a folk song about Monday morning staff meetings."</em></div>
+      <a class="try-link" href="https://suno.com" target="_blank">Try it free &rarr;</a>
+    </div>
+    <div class="tool-card">
+      <div class="tool-category">Video</div>
+      <div class="tool-name">Runway</div>
+      <div class="tool-desc">Generate cinematic video clips from a text description or a single image. Hollywood-quality, zero filming required.</div>
+      <a class="try-link" href="https://runwayml.com" target="_blank">Try it free &rarr;</a>
+    </div>
+    <div class="tool-card">
+      <div class="tool-category">Voice</div>
+      <div class="tool-name">ElevenLabs</div>
+      <div class="tool-desc">Clone any voice or generate ultra-realistic speech in 30+ languages. Perfect for narrating videos, audio guides, or event intros.</div>
+      <a class="try-link" href="https://elevenlabs.io" target="_blank">Try it free &rarr;</a>
+    </div>
+    <div class="tool-card">
+      <div class="tool-category">Images</div>
+      <div class="tool-name">Midjourney</div>
+      <div class="tool-desc">The gold standard for AI-generated images. Create stunning visuals for campaigns, social posts, or event materials from a text prompt.</div>
+      <a class="try-link" href="https://www.midjourney.com" target="_blank">Try it &rarr;</a>
+    </div>
+    <div class="tool-card">
+      <div class="tool-category">Video</div>
+      <div class="tool-name">Sora</div>
+      <div class="tool-desc">OpenAI's text-to-video model. Describe a scene &mdash; a sunset over Jerusalem, a bustling gala &mdash; and watch it come to life.</div>
+      <a class="try-link" href="https://openai.com/sora" target="_blank">Try it &rarr;</a>
+    </div>
+    <div class="tool-card">
+      <div class="tool-category">Audio</div>
+      <div class="tool-name">NotebookLM Audio Overviews</div>
+      <div class="tool-desc">Upload any document and Google turns it into a podcast-style conversation between two AI hosts. Listen to a 50-page report on your commute.</div>
+      <a class="try-link" href="https://notebooklm.google.com" target="_blank">Try it free &rarr;</a>
+    </div>
+    <div class="tool-card">
+      <div class="tool-category">Presentations</div>
+      <div class="tool-name">Gamma</div>
+      <div class="tool-desc">Describe your presentation and get a polished, designed slide deck in seconds. No more wrestling with PowerPoint layouts.</div>
+      <a class="try-link" href="https://gamma.app" target="_blank">Try it free &rarr;</a>
+    </div>
+    <div class="tool-card">
+      <div class="tool-category">Interactive</div>
+      <div class="tool-name">ChatGPT Canvas</div>
+      <div class="tool-desc">An interactive workspace inside ChatGPT where you co-edit documents, code, and visual outputs side-by-side with AI in real time.</div>
+      <a class="try-link" href="https://chatgpt.com" target="_blank">Try it free &rarr;</a>
+    </div>
+  </div>
+</div>
+
+</div><!-- end container for bonus -->
+</div><!-- end session-bonus -->
 
 <!-- FOOTER -->
 <div class="footer">
