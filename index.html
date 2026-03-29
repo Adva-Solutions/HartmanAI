@@ -609,7 +609,17 @@ Do not specify exact dollar amounts if you don't have verified data. Use ranges 
     <div class="collapsible-body"><div class="collapsible-content">
       <div class="step-card"><div class="step-num">1</div><h4>Open M365 Copilot</h4><p>Go to <a href="https://m365.cloud.microsoft/" target="_blank" style="color:var(--accent);">m365.cloud.microsoft</a> and open Copilot. In the <strong>left sidebar</strong>, click <strong>"New Agent"</strong> to start building.</p></div>
       <div class="step-card"><div class="step-num">2</div><h4>Name, Logo, and Description</h4><p>Give your agent a clear name (e.g., "Hartman Email Writer" or "Podcast Repurposer") and a brief description. Upload a logo or icon.</p></div>
-      <div class="step-card"><div class="step-num">3</div><h4>Write the System Prompt (Instructions)</h4><p>The most important part. Write detailed instructions covering: role, tone, style guidelines, output format, and constraints.</p></div>
+      <div class="step-card"><div class="step-num">3</div><h4>Write the System Prompt (Instructions)</h4><p>The most important part. This is where you define <em>who</em> the agent is and <em>how</em> it behaves. Best practices:</p>
+        <ul>
+          <li><strong>Define the role:</strong> "You are a senior fundraising writer for the Shalom Hartman Institute."</li>
+          <li><strong>Set the tone:</strong> Specify formal vs. conversational, warm vs. authoritative, scholarly vs. accessible.</li>
+          <li><strong>Give output rules:</strong> Word count, format (bullet points vs. paragraphs), structure (always include a subject line, always end with next steps).</li>
+          <li><strong>Add constraints:</strong> "Never fabricate data." "Always ask for the donor name before writing." "Don't use the phrase 'I hope this email finds you well.'"</li>
+          <li><strong>Include examples:</strong> Paste 1-2 examples of ideal output so the agent learns what "good" looks like.</li>
+          <li><strong>Specify what to ask:</strong> "Before generating, always ask the user for: recipient name, topic, and desired tone."</li>
+        </ul>
+        <div class="wf-note" style="margin-top:12px;"><strong>Rule of thumb:</strong> If you find yourself correcting the same mistake more than once, add a rule for it in the system prompt. A great system prompt is built through iteration, not written perfectly the first time.</div>
+      </div>
       <div class="step-card"><div class="step-num">4</div><h4>Add Knowledge Sources</h4><p>Upload documents the agent should reference. Connect Outlook and OneDrive so the agent can access your files and email history.</p></div>
       <div class="step-card"><div class="step-num">5</div><h4>Set Capabilities</h4><p>Choose what the agent can do: search the web, read your emails, access your calendar, create files. Enable only what it needs.</p></div>
       <div class="step-card"><div class="step-num">6</div><h4>Add Suggested Prompts</h4><p>Create 3-4 starter prompts that appear when users open the agent.</p></div>
